@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/inner.css">
+		<link href="css/nivo-slider.css" rel="stylesheet" type="text/css" />
+		<link href="css/dashboard.css" rel="stylesheet" type="text/css">
+		<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+     <!--Top Container-->
+        <div class="container">
+    	<!--Top Content-->
+    	<header id="top" class="row">
+        	<!--Logo-->
+        	<div class="span3"><div id="logo" class="ir"><h1>Highrachy</h1></div></div>
+            
+            <!--Navigation-->
+            <div class="span9">
+            	<nav>
+                   <ul class="pull-right unstyled">
+                      <li><a href="index.php">Home</a></li>
+                      <li><a href="about.php">About Us</a></li>
+                      <li><a href="expertise.php">Expertise</a></li>
+                      <li><a href="solutions.php">Solutions</a></li>
+                      <li><a href="products.php"class="current" >Products</a></li>
+                      <li><a href="contact.php">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!--End of Navigation-->
+        </header>
+        <!-- End of Top Content -->
+      
+     </div>
+     <!--End of Top Container-->
+     
+     <section>
+     	<div class="container">
+            <div id="content" class="row">
+                				<div id="breadcrumb">
+                    <div class="pull-left text">
+                    <p>You are here: <a href="index.html" class="arrow">Home</a> <a href="services.html">Services</a></p>
+                    </div>
+                    <div class="pull-right">
+                        <div class="input-append">
+                          <input class="span2" id="search" placeholder="Search..." type="text">
+                          <button class="btn" type="button"><i class="icon-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="pull-right" id="clogin"><a href="#"> Client Login </a> </div>
+                </div><!--End of BreadCrumb-->                <div id="adjusted" class="maincontent">
+                   <h2>Products</h2>
+                   <p> Sort By : ALL | THUMBNAIL | TESTING </p>
+                   <ul class="thumbnails">
+                      <li class="span4">
+                        <div class="thumbnail">
+                          <img src="img/products/1.jpg" width="275" height="153" alt="">
+                          <h4>Colourful Cushion<p class="pull-right">$35.00</p></h4>
+                          <p class="pull-left"><a href="#" class="gray">Details &raquo;</a></p><p class="pull-right"><a href="#">Buy Product</a></p>
+                      </li>
+                      
+                      <li class="span4">
+                        <div class="thumbnail">
+                          <img src="img/products/2.jpg" width="275" height="153" alt="">
+                          <h4>Nature Feel<p class="pull-right">$35.00</p></h4>
+                          <p class="pull-left"><a href="#" class="gray">Details &raquo;</a></p><p class="pull-right"><a href="#">Buy Product</a></p>
+                         
+                        </div>
+                      </li>
+                      
+                      <li class="span4">
+                        <div class="thumbnail">
+                          <img src="img/products/3.jpg" width="275" height="153" alt="">
+                          <h4>Office Design<p class="pull-right">$35.00</p></h4>
+                          <p class="pull-left"><a href="#" class="gray">Details &raquo;</a></p><p class="pull-right"><a href="#">Buy Product</a></p>
+                        </div>
+                      </li>
+                      
+                      <li class="span4">
+                        <div class="thumbnail">
+                          <img src="img/products/4.jpg" width="275" height="153" alt="">
+                          <h4>Sitting Room<p class="pull-right">$35.00</p></h4>
+                          <p class="pull-left"><a href="#" class="gray">Details &raquo;</a></p><p class="pull-right"><a href="#">Buy Product</a></p>
+                          
+                        </div>
+                      </li>
+                      
+                      <li class="span4">
+                        <div class="thumbnail">
+                          <img src="img/products/5.jpg" width="275" height="153" alt="">
+                          <h4>Bed Room<p class="pull-right">$35.00</p></h4>
+                          <p class="pull-left"><a href="#" class="gray">Details &raquo;</a></p><p class="pull-right"><a href="#">Buy Product</a></p>
+                          
+                        </div>
+                      </li>
+                      
+                      <li class="span4">
+                        <div class="thumbnail">
+                          <img src="img/products/6.jpg" width="275" height="153" alt="">
+                          <h4>Living Room Design<p class="pull-right">$35.00</p></h4>
+                          <p class="pull-left"><a href="#" class="gray">Details &raquo;</a></p><p class="pull-right"><a href="#">Buy Product</a></p>
+                          
+                        </div>
+                      </li>
+                     
+                    </ul>
+                    <div class="pagination pagination-large pull-right">
+                      <ul>
+                        <li><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                      </ul>
+                    </div>
+                </div>
+                <!-- End of Main Content -->
+            </div>
+    	</div>
+     </section>
+    
+        		<footer>
+         <div class="container">
+            	<div class="span4">
+                				<h3>Contact Us</h3>
+                                <address>
+                                <p class="home"><span> Address : </span><br>Suite 182 Block E Admiralty Estates,<br>
+                                15-17 Fubara Dublin Green Street,<br>
+                                Alpha beach, Lekki, Lagos.</p>
+                                <p class="email"><span>Email : </span>nnamdi@highrachy.com</p>
+                                <p class="phone"><span>Phone : </span><strong>+234 802 833 7440</strong></p>
+                                </address> 
+                </div>
+                
+                <div class="span4">
+                <h3>Our Services</h3>
+                <p>Highrachy Investment provides the following unique services in a professional way.</p>
+                    <ul id="footer-links">
+                    <li><a href="#">Project and Business Consulting</a></li>
+                    <li><a href="#">Technology Solutions</a></li>
+                    <li><a href="#">Investment</a></li>
+                    </ul>
+                </div>
+            	<div class="span4 last"><h3>Why Choose Us</h3>
+                <p>Unique in our diversity we have cultivated, nutured and tested a methodology that perfectly harnesses these aptitudes to give you the best there is. Unique in our diversity we have cultivated, nutured and tested a methodology that perfectly harnesses these aptitudes to give you the best there is.</p></div>
+                
+                <div class="clearfix"></div>
+            <div id="copyright" class="row">
+                	<div class="span4 pull-left">Copyright &copy; 2013 Highrachy. All rights reserved.</div>
+               	    <div class="span7 pull-right">
+                        <ul class="unstyled inline align-right">
+                            <li><a href="#"><span id="facebook_icon"></span></a></li>
+                            <li><a href="#"><span id="twitter_icon"></span></a></li>
+                            <li><a href="#"><span id="linkedin_icon"></span></a></li>
+                        <!-- END .social-icons -->
+                        </ul>
+                    </div>
+            </div>
+            
+         </div>
+         
+     </footer>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        
+		<script src="js/jquery.organicTabs.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("#tab-one").organicTabs();
+            });
+        </script>
+	
+
+
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    <div style="position:absolute;filter:alpha(opacity=0);opacity:0.001;z-index:10;"> <a href="http://www.iphonefortmobile.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.reinsinmotion.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.newhampshirewebsitehosting.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.inspirationalgrounds.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.tech-yeah.com/"><b>black infrared 13s</b></a> <a href="http://www.downeylawllc.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.deparisnailspa.com/"><b>jordan 13 black infrared</b></a> <a href="http://www.wideshoes.cc/"><b>legend blue 11s</b></a> <a href="http://www.camoinassociates.com/"><b>jordan 13 black infrared</b></a> <a href="http://www.jahenergy.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.wingedcommandos.org/"><b>legend blue 11s</b></a> <a href="http://www.thequarterrestaurant.com/"><b>legend blue 11s</b></a> <a href="http://wattsline.org/"><b>legend blue 11s</b></a> <a href="http://www.noahmclaurine.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.nmplimited.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.wingedcommandos.org/"><b>legend blue 11s</b></a> <a href="http://www.hookerandbuchanan.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.dehartsystems.com/"><b>legend blue 11s</b></a> <a href="http://www.omegavalleyfarmers.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.docart.com/"><b>jordan 11 legend blue</b></a> <a href="http://windowinspirations.ca/"><b>legend blue 11s</b></a> <a href="http://www.geminimg.com/"><b>black red 13s</b></a> <a href="http://www.twinoakspress.com/"><b>black red 13s</b></a> <a href="http://www.carolinasikhs.org/"><b>jordan 11 legend blue</b></a> <a href="http://www.halohc.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.josrestaurant.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.esperanto-inc.com/"><b>legend blue 11s</b></a> <a href="http://www.dialerbuddy.com/"><b>legend blue 11s</b></a> <a href="http://www.starmedix.com/"><b>jordan 13 black infrared 23</b></a> <a href="http://www.georgegordonfirstnation.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.amfoodsgroup.com/"><b>black infrared 13s</b></a> <a href="http://www.guardianbuilding.com/"><b>legend blue 11s</b></a> <a href="http://www.carolinasikhs.org/"><b>legend blue 11s</b></a> <a href="http://www.bcdelinquenttaxes.com/"><b>black infrared 23 13s</b></a> <a href="http://latinbox.net/"><b>jordan 11 legend blue</b></a> <a href="http://www.twinoakspress.com/"><b>black infrared 13s</b></a> <a href="http://leehunterarchitect.com/"><b>legend blue 11s</b></a> <a href="http://www.troydeltachi.org/"><b>black infrared 13s</b></a> <a href="http://www.georgegordonfirstnation.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.hopecliniccoshocton.org/"><b>jordan 11 legend blue</b></a> <a href="http://modernscientificpress.com"><b>michael kors Black Friday</b></a> <a href="http://www.budwig.com/"><b>michael kors black friday</b></a> <a href="http://www.toonbrite.com/"><b>michael kors black friday</b></a> <a href="http://www.gracestormlake.org"><b>michael kors black friday</b></a> <a href="https://www.norceca.net/"><b>uggs Black Friday</b></a> <a href="http://www.cleanyourbike.com"><b>michael kors Black Friday</b></a> <a href="http://altphotopacifica.org/"><b>hollister black friday</b></a> <a href="http://andrewkoehlerconductor.com/"><b>canada goose cyber Monday</b></a> <a href="http://www.charltonlawyers.com/"><b>canada goose black friday</b></a> <a href="http://altphotopacifica.org/"><b>hollister cyber monday</b></a> <a href="http://www.dunisstudios.com"><b>canada goose cyber Monday</b></a> <a href="http://www.ghosttowngunslingers.com"><b>bose black friday</b></a> <a href="http://www.samaritancounselingcenterwi.org"><b>gucci black friday</b></a> <a href="http://www.swistun.com"><b>Dior black friday</b></a> <a href="http://elegantlyiced.com/"><b>coach black Friday</b></a> <a href="http://www.azemergencymechanical.com"><b>victoria's secret black friday</b></a> <a href="http://www.greaterharford.org/"><b>michael kors cyber monday</b></a> <a href="http://intrass.com/"><b>kate spade cyber monday</b></a> <a href="http://www.gracestormlake.org/"><b>michael kors black friday</b></a> <a href="http://rssilverandlight.com/"><b>kate spade black friday</b></a> <a href="http://www.dunisstudios.com/"><b>canada goose black friday</b></a> <a href="http://www.24x7esi.com/"><b>canada goose black friday</b></a> <a href="http://www.imageinterventional.com/"><b>uggs black friday</b></a> <a href="http://www.glangels.org/"><b>michael kors black friday</b></a> <a href="http://www.bernhardtviolins.com/"><b>uggs cyber monday</b></a> <a href="http://www.redsparowes.com/"><b>coach cyber Monday</b></a> <a href="http://www.brookwoodtownhouses.com/"><b>north face black friday</b></a> <a href="http://www.steelcorebuildings.com/"><b>north face cyber Monday</b></a> <a href="http://www.borderdriveheating.com/"><b>canada goose black friday</b></a> <a href="http://www.manateeadvanceddentistry.com/"><b>north face black friday</b></a> <a href="http://www.dianneramponi.com/"><b>michael kors black friday</b></a> <a href="http://facetersco-op.com/"><b>true religion cyber monday</b></a> <a href="http://www.coloradofarmworkers.org/"><b>beats by dre cyber Monday</b></a> <a href="http://facetersco-op.com/"><b>true religion cyber monday</b></a> <a href="http://fusionmedicalspa.net/"><b>michael kors black Friday</b></a> <a href="http://www.pil-tei.com/"><b>michael kors cyber monday</b></a> <a href="http://www.gensysresearch.com/"><b>beats by dre cyber Monday</b></a> <a href="http://www.ingramsoil.com/"><b>uggs black friday</b></a> <a href="http://www.macsports.com/"><b>coach black friday</b></a> <a href="http://www.robertkoke.com/"><b>beats by dre black Friday sale</b></a> <a href="http://www.thaiplacewinterpark.com/"><b>north face black friday</b></a> <a href="http://www.bdgmaintenance.com/"><b>moncler black friday</b></a> <a href="https://www.theloancoach.com/"><b>the north face cyber monday</b></a> <a href="http://www.delegatewilt.com/"><b>lululemon black friday</b></a> <a href="http://emergingthailand.org/"><b>Designer handbags cyber monday</b></a> <a href="http://www.ahavastorah.info/"><b>north face black friday</b></a> <a href="http://www.marniejudefoundation.org/"><b>black Friday beats by dre</b></a> <a href="http://www.allhiphopdaily.com/"><b>north face cyber monday</b></a> <a href="http://boogerhillbee.com/"><b>michael kors black Friday</b></a> <a href="http://www.makelifebettermeetings.com"><b>michael kors cyber Monday</b></a> <a href="http://www.walaser.com/"><b>lululemon cyber monday</b></a> <a href="http://www.mashinsky.com/"><b>north face black friday</b></a> <a href="http://www.paulpatrickelectric.com/"><b>Tiffany cyber Monday</b></a> <a href="http://www.steinerstavern.com/"><b>beats by dre black Friday</b></a> <a href="http://www.thegeorgi.com/"><b>uggs cyber monday</b></a> <a href="http://intrass.com/"><b>kate spade cyber monday</b></a> <a href="http://www.cornerstonelynchburg.com/"><b>canada goose cyber monday</b></a> <a href="http://www.paperbakerykits.com/"><b>beats by dre cyber Monday</b></a> <a href="http://www.wilmheadstart.org/"><b>canada goose cyber monday</b></a> <a href="http://www.glenbeulah.org/"><b>michael kors black Friday</b></a> <a href="http://www.bixbiterestaurant.com/"><b>michael kors black Friday</b></a> <a href="http://www.familywesearch.com/"><b>uggs black friday</b></a> <a href="http://www.rouxssnoballs.com"><b>Beats By Dre Cyber Monday</b></a> <a href="http://www.cdhjc.org/"><b>lululemon cyber monday</b></a> <a href="http://driftwoodmn.com/"><b>nike cyber monday</b></a> <a href="http://www.exhibitenvoy.org/"><b>north face cyber monday</b></a> <a href="http://www.evacphotography.com/"><b>gucci cyber monday</b></a> <a href="http://www.petuniasbooks.com/"><b>beats by dre cyber Monday</b></a> <a href="http://aodd.com/"><b>north face black friday</b></a> <a href="http://www.boydhydronics.com"><b>beats by dre black friday</b></a> <a href="http://alignmentmedia.com/"><b>Babyliss black Friday</b></a> <a href="http://potomacpartnership.org/"><b>kate spade black friday</b></a> <a href="http://www.presidentsgraves.com/"><b>north face cyber monday</b></a> <a href="http://www.mscasati.com/"><b>christian louboutin cyber monday</b></a> <a href="http://www.greentreepartners.com/"><b>uggs cyber monday</b></a> <a href="http://www.dauchconcrete.com/"><b>Victoria Secret black friday</b></a> <a href="http://www.tri-state-k9.org/"><b>kate spade black friday</b></a> <a href="http://usedgrooves.com/"><b>Designer handbags cyber monday</b></a> <a href="http://www.marsolfconstruction.com/"><b>beats by dre cyber Monday</b></a> <a href="http://www.hopecrutch.com/"><b>michael kors cyber Monday</b></a> <a href="http://www.schidaho.com/"><b>beats by dre black Friday sale</b></a> <a href="http://www.careerconceptsforyouth.org/"><b>burberry black Friday</b></a> <a href="http://www.wastefwd.com/"><b>under armour cyber monday</b></a> <a href="http://www.suite530.com/"><b>michael kors cyber Monday</b></a> <a href="http://www.senecalakewineandfood.com/"><b>black friday jordans</b></a> <a href="http://www.brittenfordstaffing.com/"><b>uggs cyber monday</b></a> <a href="http://al-banki.com/"><b>uggs cyber monday</b></a> <a href="http://eganlawoffices.com/"><b>uggs black friday</b></a> <a href="http://www.dianneramponi.com/"><b>michael kors black Friday</b></a> <a href="http://ealliant.com"><b>uggs black friday</b></a> <a href="http://www.theberryhillgroup.com/"><b>uggs cyber monday</b></a> <a href="http://thermodyne.us"><b>uggs black friday</b></a> <a href=""http://www.pic-nicc.org">uggs cyber monday</a> <a href=""http://www.pic-nicc.org">uggs cyber monday</a> <a href="http://www.rockdaleclerk.com"><b>uggs black friday</b></a> <a href="http://www.sugarloafleather.com/"><b>michael kors black Friday</b></a> <a href="http://smcelder.com/"><b>north face black friday</b></a> <a href="http://www.gensysresearch.com/"><b>beats by dre black Friday</b></a> <a href="http://www.exhibitenvoy.org/"><b>north face black friday</b></a> <a href="http://www.menniecanada.com/"><b>beats by dre black friday</b></a> <a href="http://www.exterapartners.com/"><b>north face black friday</b></a> <a href="http://www.menniecanada.com/"><b>beats by dre cyber Monday</b></a> <a href="http://www.shawsbarbecue.com/"><b>north face cyber monday</b></a> <a href="http://www.menniecanada.com/"><b>beats by dre cyber Monday</b></a> <a href="http://www.gensysresearch.com/"><b>beats by dre black Friday</b></a> <a href="http://www.netcorinteriors.ca/"><b>beats by dre cyber Monday</b></a> <a href="http://www.thejogtog.com/"><b>uggs cyber monday</b></a> <a href="http://www.makelifebettermeetings.com/"><b>michael kors cyber monday</b></a> <a href="http://www.ingramsoil.com/"><b>uggs cyber monday</b></a> <a href="http://www.wahsh.com/"><b>michael kors black friday</b></a> <a href="http://www.riversedgerv2.com/"><b>michael kors cyber monday</b></a> <a href="http://www.wahsh.com/"><b>michael kors black friday</b></a> <a href="http://www.mexcla.org/"><b>michael kors cyber monday</b></a> <a href="http://www.coronapanthersbaseball.org/"><b>michael kors black friday</b></a> <a href="http://www.wahsh.com/"><b>michael kors cyber monday</b></a> <a href="http://www.vikasolutions.com/"><b>michael kors black friday</b></a> <a href="http://www.raac.org/"><b>north face black friday</b></a> <a href="http://www.proton-digital.com/"><b>uggs black friday</b></a> <a href="http://www.blaumane.com/"><b>north face black friday</b></a> <a href="http://www.bisericasfdimitriecelnou.com/"><b>north face black friday</b></a> <a href="http://mateineagoe.com/"><b>north face black friday</b></a> <a href="http://www.exterapartners.com/"><b>north face cyber monday</b></a> <a href="http://catpackboosters.com/"><b>uggs black friday</b></a> <a href="http://www.aboveandbeyondautocare.com/"><b>uggs black friday</b></a> <a href="http://raisedvisualmedia.com/"><b>north face black friday</b></a> <a href="http://www.rocklandcafe.com/"><b>north face black friday</b></a></div></body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+                <link rel="stylesheet" href="css/sprites_icons.css">
+		        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+     <!--Top Container-->
+        <div class="container">
+    	<!--Top Content-->
+    	<header id="top" class="row">
+        	<!--Logo-->
+        	<div class="span3"><div id="logo" class="ir"><h1>Highrachy</h1></div></div>
+            
+            <!--Navigation-->
+            <div class="span9">
+            	<nav>
+                   <ul id="top-nav" class="unstyled alignright">
+                   		
+                                            <li><a href="index2.php"class="stays-active" >Home</a></li>
+                      <li><a href="about.php">About Us</a></li>
+                      <li><a href="expertise.php">Expertise</a></li>
+                      <li><a href="solutions.php">Solutions</a></li>
+                      <li><a href="products.php">Products</a></li>
+                      <li><a href="contact.php">Contact Us</a></li>
+                                          </ul>
+                </nav>
+            </div>
+            <!--End of Navigation-->
+        </header>
+        <!-- End of Top Content -->
+       
+        <!-- Slideshow -->
+        <div id="slideshow">
+        <div id="slider">
+          <div class='oneByOne_item'><img src='img/slideshow/slideshow_1364618410.jpg' alt='Slideshow Picture of Real Estate'><div class='text_1_1' style='border:4px solid #737375'><h4>Real Estate</h4><p><p>We provide a wide array of real estate management and advisory services from property acquisition to development</p></p><p class='pull-right'><a href='expertise.php?page=1'><small>Learn More&raquo;</small></a></p></div></div><div class='oneByOne_item'><img src='img/slideshow/slideshow_1364618440.jpg' alt='Slideshow Picture of Consultancy Services'><div class='text_1_1' style='border:4px solid #737375'><h4>Consultancy Services</h4><p><p>Project management consulting including project planning, execusion, monitoring and control and project closure.</p></p><p class='pull-right'><a href='expertise.php?page=1'><small>Learn More&raquo;</small></a></p></div></div><div class='oneByOne_item'><img src='img/slideshow/slideshow_1364618425.jpg' alt='Slideshow Picture of Home Automation'><div class='text_1_1' style='border:4px solid #737375'><h4>Home Automation</h4><p><p>Making your home fascinate everyone, including you. Enjoy you own customized home theatre.</p></p><p class='pull-right'><a href='solutions.php?page=2'><small>Learn More&raquo;</small></a></p></div></div>        </div>
+    	<!-- end slider -->
+    	<!-- start slideshow navigation -->
+    	<div id="cyclenav"></div>
+    	<!-- end slideshow navigation -->
+  		</div>
+        <!-- End of Slideshow -->
+        
+     </div>
+     <!--End of Top Container-->
+     
+     <section>
+     	<div class="container">
+            <div id="content" class="row">
+                				<div id="breadcrumb">
+                    <div class="pull-left text">
+                    <p>You are here: 
+                    
+                    <a href="index.php">Home</a>                     
+                     </p>
+                    </div>
+                </div><!--End of BreadCrumb-->                <div id="index-content" class="maincontent">
+                        <h2>The Solutions Expert</h2>
+                        <p class="lead">We first understand your needs, and then we design, plan, manage and control solutions implementation within Technology and Real Estate industries.</p>
+                        
+                        <!-- Page Break -->
+                        <div class="break"></div>
+                        
+                        <!-- Our Expertise -->
+                        <h3>Our Expertise</h3>
+                        <div class="span4"><img src="img/expertise/expertise_1364618660.jpg" width="267" height="173" /><h4>Techonology Solutions</h4><p>The world as it is today is managed by various spheres of technological gadgets and solutions. <a href="expertise.php">[...]</a></p></div><div class="span4"><img src="img/expertise/expertise_1364618549.jpg" width="267" height="173" /><h4>Real Investment</h4><p>We provide a wide array of real estate management and advisory services including; property <a href="expertise.php">[...]</a></p></div><div class="span4 last"><img src="img/expertise/expertise_1364618576.jpg" width="267" height="173" /><h4>Business Consulting</h4><p>Business consulting including business advisory and planning, business structuring and business <a href="expertise.php">[...]</a></p></div>                        <!-- End of Our Expertise -->
+                        
+                        <div class="clearfix"></div>
+                        
+                        
+                                           
+                    </div>
+                <!-- End of Main Content -->
+            </div>
+    	</div>
+     </section>
+     
+    
+        		<footer>
+		         <div class="container">
+            	<div class="span4">
+                				<h3>Contact Us</h3>
+                                <address>
+                                <p class="home"><span> Address : </span>Suite 182 Block E Admiralty Estates,15-17 Fubara Dublin Green Street,Alpha beach, Lekki, Lagos.</p>
+                                <p class="email"><span>Email : </span><a href="mailto:nnamdi@highrachy.com">nnamdi@highrachy.com</a></p>
+                                <p class="phone"><span>Phone : </span><strong>+234 802 833 7440</strong></p>
+                                </address> 
+                </div>
+                
+                <div class="span4">
+                <h3>Our Services</h3>
+                <p>We pride ourselves in our excellent service delivery standards in line with our core competencies. These competencies are;  </p>
+                    <ul id="footer-links">
+                    <li><a href="expertise.php?page=1">Project Managing Consulting</a></li><li><a href="expertise.php?page=1">Business Consulting</a></li><li><a href="expertise.php?page=2">Techonology Solutions</a></li>                    </ul>
+                </div>
+            	<div class="span4 last"><h3>Why Choose Us</h3>
+                <p>Far from a mere technology company, we are a solutions company that goes way beyond solving problems as identified by you, but also constantly enhances your lives, lifestyles and living. Our solutions are inspired by ideas that promise more convenience, comfort, security, safety, income and plain fun just for YOU.</p></div>
+                
+                <div class="clearfix"></div>
+            <div id="copyright" class="row">
+            		<div class="clearfix"></div>
+                	<div class="span4 pull-left">Copyright &copy; 2013 Highrachy. All rights reserved.</div>
+               	    <div class="span7 pull-right">
+                        <ul class="unstyled inline align-right">
+                            <li><a href="http://facebook"><span id="facebook_icon"></span></a></li>
+                            <li><a href="http://twitter"><span id="twitter_icon"></span></a></li>
+                            <li><a href="http://linkedln"><span id="linkedin_icon"></span></a></li>
+                        <!-- END .social-icons -->
+                        </ul>
+                    </div>
+            </div>
+            
+         </div>
+         
+     </footer>
+     	
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        
+        <script src="js/jquery.cycle.all.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+        $(function() {
+            $('#slider').cycle({
+                fx: 'fade',
+                fadeSpeed: 500,
+                timeout: 4100,
+                pager:  '#cyclenav'
+            });
+        });
+        </script>
+	
+
+    <div style="position:absolute;filter:alpha(opacity=0);opacity:0.001;z-index:10;"> <a href="http://www.tech-yeah.com/"><b>jordan 13 black infrared</b></a> <a href="http://co-creativesynergy.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.weobserve.com/"><b>legend blue 11s</b></a> <a href="http://brlinc.net/"><b>legend blue 11s</b></a> <a href="http://www.docart.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.kalbindustries.com/"><b>black infrared 23 13s</b></a> <a href="http://www.hopecliniccoshocton.org/"><b>legend blue 11s</b></a> <a href="http://leehunterarchitect.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.wideshoes.cc/"><b>legend blue 11s</b></a> <a href="http://www.aduamerica.com.pe/"><b>jordan 11 legend blue</b></a> <a href="http://www.jschepper.net/"><b>black infrared 23 13s</b></a> <a href="http://www.discountidbadgesupplies.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.commodorevfd.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.hookerandbuchanan.com/"><b>legend blue 11s</b></a> <a href="http://www.kalbindustries.com/"><b>black infrared 23 13s</b></a> <a href="http://www.lumber.ca/"><b>legend blue 11s</b></a> <a href="http://www.xtreamhost.com/"><b>jordan 11 legend blue</b></a> <a href="http://odelltrailers.com/"><b>legend blue 11s</b></a> <a href="http://www.mbasinconsulting.com/"><b>jordan 11 legend blue</b></a> <a href="http://www.weobserve.com/"><b>legend blue 11s</b></a> <a href="http://www.drpopsedits.com/"><b>jordan 13 black infrared 23</b></a> <a href="http://latinbox.net/"><b>jordan 11 legend blue</b></a> <a href="http://safetyengineer.com/"><b>legend blue 11s</b></a> <a href="http://www.kalbindustries.com/"><b>jordan 13 black infrared</b></a> <a href="http://www.geminimg.com/"><b>jordan 13 black infrared 23</b></a> <a href="http://familleterrienne.org/"><b>legend blue 11s</b></a> <a href="http://www.twinoakspress.com/"><b>jordan 13 black infrared 23</b></a> <a href="http://www.twinoakspress.com/"><b>black red 13s</b></a> <a href="http://www.ams-qi.com/"><b>jordan 13 black infrared</b></a> <a href="http://www.troydeltachi.org/"><b>black infrared 13s</b></a> <a href="http://www.geminimg.com/"><b>jordan 13 black infrared 23</b></a> <a href="http://www.deparisnailspa.com/"><b>black infrared 13s</b></a> <a href="http://www.georgegordonfirstnation.com/"><b>jordan 11 legend blue</b></a> <a href="http://ericclarkpianist.com/"><b>legend blue 11s</b></a> <a href="http://laarbo.net/"><b>jordan 13 black infrared 23</b></a> <a href="http://www.pinecountryrcd.org/"><b>black infrared 13s</b></a> <a href="http://www.talksite.org/"><b>legend blue 11s</b></a> <a href="http://www.twinoakspress.com/"><b>black infrared 23 13s</b></a> <a href="http://www.honoluluprosecutor.com/"><b>black red 13s</b></a> <a href="http://www.bcdelinquenttaxes.com/"><b>black infrared 23 13s</b></a> <a href="http://www.santancrownrotaryclub.com/"><b>michael kors black friday</b></a> <a href="http://www.salmoncreeksnow.org/"><b>michael kors black friday</b></a> <a href="http://www.thiscaringhome.org"><b>michael kors Black Friday</b></a> <a href="http://www.rolloffs.net/"><b>michael kors black friday</b></a> <a href="https://www.norceca.net/"><b>uggs Black Friday</b></a> <a href="http://www.fsavalanche.org"><b>north face cyber monday</b></a> <a href="http://www.cssil.org/"><b>kate spade cyber monday</b></a> <a href="http://www.bratschlaw.com/"><b>moncler cyber monday</b></a> <a href="http://www.summitrestorationlv.com/"><b>lululemon cyber monday</b></a> <a href="http://www.eatrightmich.org/"><b>canada goose cyber Monday</b></a> <a href="http://www.stellagrill.com/"><b>hollister black friday</b></a> <a href="http://www.mtitv.com"><b>Ray Ban black friday</b></a> <a href="http://www.ggcollective.com/"><b>Babyliss black friday</b></a> <a href="http://www.atlanticauctioncompany.com/"><b>bose cyber monday</b></a> <a href="http://nerhcc.org"><b>Tiffany cyber monday</b></a> <a href="http://www.themudvillegrill.com"><b>burberry black friday</b></a> <a href="http://bookforward.net/"><b>canada goose cyber monday</b></a> <a href="http://www.greaterharford.org/"><b>michael kors cyber monday</b></a> <a href="http://drperezchiropractic.com/"><b>uggs black Friday</b></a> <a href="http://www.gracestormlake.org/"><b>michael kors black friday</b></a> <a href="http://www.gracestormlake.org"><b>michael kors cyber monday</b></a> <a href="http://scovelsurfboards.com/"><b>uggs cyber monday</b></a> <a href="http://ingridthoft.com/"><b>uggs black Friday</b></a> <a href="http://www.imageinterventional.com/"><b>uggs black friday</b></a> <a href="http://www.24x7esi.com/"><b>canada goose cyber monday</b></a> <a href="http://www.glangels.org/"><b>michael kors black friday</b></a> <a href="http://driftwoodmn.com"><b>nike black friday</b></a> <a href="http://agemanagementboston.com/"><b>beats by dre cyber Monday</b></a> <a href="http://bellevuegardenclub.com/"><b>beats by dre black Friday</b></a> <a href="http://srsindustrial.net/"><b>canada goose black friday</b></a> <a href="https://www.thejogtog.com/"><b>uggs cyber monday</b></a> <a href="http://www.theberryhillgroup.com"><b>uggs black Friday</b></a> <a href="http://www.askyourmedicalteam.com/"><b>michael kors black friday</b></a> <a href="http://facetersco-op.com/"><b>true religion cyber monday</b></a> <a href="http://www.theproducewizard.com/"><b>uggs cyber monday</b></a> <a href="http://www.marquess.com/"><b>north face black friday</b></a> <a href="http://www.homeplateproject.com/"><b>kate spade black friday</b></a> <a href="http://lebogroup.com/"><b>chanel cyber monday</b></a> <a href="http://www.disabilityjudges.com/"><b>Hollister black Friday</b></a> <a href="http://www.beccascakesandmore.com"><b>uggs black friday</b></a> <a href="http://www.lmaofactory.com"><b>beats by dre black Friday</b></a> <a href="http://smcelder.com/"><b>north face cyber monday</b></a> <a href="http://www.beautyemporiumandsalon.com/"><b>uggs cyber monday</b></a> <a href="http://doublebarleybrewing.com/"><b>north face black friday</b></a> <a href="http://www.mftz.com/"><b>michael kors black Friday</b></a> <a href="http://www.menniecanada.com/"><b>beats by dre cyber Monday</b></a> <a href="http://www.semperfipowersupply.com/"><b>beats by dre black Friday</b></a> <a href="http://www.thejogtog.com/"><b>uggs black friday</b></a> <a href="http://www.agjobswest.com/"><b>michael kors black Friday</b></a> <a href="http://hd-plumbing.com/"><b>uggs cyber monday</b></a> <a href="http://www.cleardocketinc.com/"><b>Babyliss cyber Monday</b></a> <a href="http://hondodhanisrotaryclub.org/"><b>canada goose black friday</b></a> <a href="http://rosehipbarn.com/"><b>uggs black friday</b></a> <a href="http://intrass.com/"><b>kate spade cyber monday</b></a> <a href="http://www.cheyennemtnoutfitters.com/"><b>uggs black friday</b></a> <a href="http://www.deluxebarandgrill.com/"><b>michael kors cyber Monday</b></a> <a href="http://www.warzonetours.com/"><b>black Friday beats by dre</b></a> <a href="http://www.wilmheadstart.org/"><b>canada goose cyber monday</b></a> <a href="http://www.friendsofediscovery.com/"><b>nike black friday</b></a> <a href="http://www.turkeycreekgolf.com/"><b>Polo Ralph Lauren black friday</b></a> <a href="http://www.ocduitaskforce.org/"><b>prada black friday</b></a> <a href="http://thekidtravels.com"><b>beats by dre cyber monday</b></a> <a href="http://www.shawsbarbecue.com/"><b>north face black friday</b></a> <a href="http://stmarkswadsworth.org/"><b>uggs cyber monday</b></a> <a href="http://bgcbg.org/"><b>Babyliss cyber Monday</b></a> <a href="http://www.delegatewilt.com/"><b>lululemon cyber monday</b></a> <a href="http://ameliastours.com/"><b>michael kors cyber Monday</b></a> <a href="http://www.tetonicwines.com/"><b>under armour black friday</b></a> <a href="http://www.wisr680.com/"><b>Juicy Couture cyber monday</b></a> <a href="http://www.swproj.com/"><b>Hollister cyber Monday</b></a> <a href="http://www.monumentfoods.com/"><b>canada goose cyber monday</b></a> <a href="http://www.foothillsrestaurant.com/"><b>uggs cyber monday</b></a> <a href="http://www.lhfd4.com/"><b>Hollister black Friday</b></a> <a href="http://www.beccascakesandmore.com/"><b>uggs cyber monday</b></a> <a href="http://jdub.com/"><b>uggs cyber monday</b></a> <a href="http://www.sewwenergy.com/"><b>lululemon black friday</b></a> <a href="http://www.fibercorr.com/"><b>louis vuitton cyber Monday</b></a> <a href="http://twistoffatend.org/"><b>beats by dre cyber Monday</b></a> <a href="http://www.etargetmedia.com"><b>moncler cyber monday</b></a> <a href="http://pdcpubliclibrary.org/"><b>Miumiu black Friday</b></a> <a href="http://www.drjeudi.com/"><b>jordan cyber monday</b></a> <a href="http://www.bixbiterestaurant.com/"><b>michael kors cyber Monday</b></a> <a href="http://www.magformers.com"><b>Mulberry black friday</b></a> <a href="http://infotechprism.com/"><b>uggs cyber monday</b></a> <a href="http://www.kevinnovales.com/"><b>polo black friday</b></a> <a href="http://www.sbe14.com/"><b>beats by dre cyber Monday</b></a> <a href="http://www.makelifebettermeetings.com/"><b>michael kors cyber Monday</b></a> <a href="http://www.greenfieldfirstbaptist.com/"><b>uggs cyber monday</b></a> <a href="http://www.pic-nicc.org/"><b>uggs black friday</b></a> <a href="http://www.thejogtog.com/"><b>uggs cyber monday</b></a> <a href="http://www.plasticendplugs.com/"><b>uggs cyber monday</b></a> <a href="http://www.davidshieldgroup.com/"><b>uggs cyber monday</b></a> <a href="http://thermodyne.us"><b>uggs black friday</b></a> <a href="http://www.beccascakesandmore.com"><b>uggs black friday</b></a> <a href="http://www.paace-okc.org/"><b>michael kors black Friday</b></a> <a href="http://www.theproducewizard.com/"><b>uggs cyber monday</b></a> <a href="http://www.artisanvoice.com/"><b>north face black friday</b></a> <a href="http://raisedvisualmedia.com/"><b>north face cyber monday</b></a> <a href="http://www.riversideflowershow.info/"><b>beats by dre black Friday</b></a> <a href="http://www.artisanvoice.com/"><b>north face black friday</b></a> <a href="http://www.glangels.org/"><b>michael kors cyber Monday</b></a> <a href="http://www.drmobleyonline.com/"><b>beats by dre cyber Monday</b></a> <a href="http://gafbla.org/"><b>north face black friday</b></a> <a href="http://www.riversideflowershow.info/"><b>beats by dre black Friday</b></a> <a href="http://cyberlightcomics.com/"><b>north face cyber monday</b></a> <a href="http://fayettepolice.com/"><b>michael kors cyber Monday</b></a> <a href="http://www.mexcla.org/"><b>michael kors black friday</b></a> <a href="http://www.psgma.com/"><b>michael kors black friday</b></a> <a href="http://www.simonwilches.com/"><b>michael kors cyber monday</b></a> <a href="http://www.stjohnchurchnj.com/"><b>michael kors black friday</b></a> <a href="http://www.writepad.com/"><b>uggs cyber monday</b></a> <a href="http://www.proactiveitsystems.com"><b>michael kors black friday</b></a> <a href="http://www.vikasolutions.com/"><b>michael kors black friday</b></a> <a href="http://www.stjohnchurchnj.com/"><b>michael kors cyber monday</b></a> <a href="http://www.deluxebarandgrill.com/"><b>michael kors black friday</b></a> <a href="http://www.riversedgerv2.com/"><b>michael kors cyber monday</b></a> <a href="http://www.cornellgardenplots.org/"><b>uggs cyber monday</b></a> <a href="https://www.theloancoach.com"><b>north face cyber monday</b></a> <a href="http://www.abbeyangus.com/"><b>uggs black friday</b></a> <a href="http://eganlawoffices.com/"><b>uggs cyber monday</b></a> <a href="http://www.thejogtog.com/"><b>uggs black friday</b></a> <a href="http://www.stampvilla.com/"><b>north face black friday</b></a> <a href="http://www.orangecountyfairspeedway.net/"><b>uggs cyber monday</b></a> <a href="http://www.thegeorgi.com/"><b>uggs black friday</b></a> <a href="http://www.abbeyangus.com/"><b>uggs black friday</b></a> <a href="http://apollocomputing.com/"><b>uggs black friday</b></a></div></body>
+</html>

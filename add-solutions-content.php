@@ -1,0 +1,112 @@
+<?php $dashboard = true; $title = "dashboard_content"; $sub_title= "dashboard_solutions"; $sub_title2="add-solutions-content"; ?>
+<?php
+include('includes/config.inc.php'); 
+require(DB);	
+require('functions/database.class.php');
+require('functions/createFormInput.php');
+$db = new Database(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+
+if (isset($_GET['s']))
+	$id = $_GET['s'];
+else redirect("solutions_content.php");
+
+//Check if the id is truly a parent page.
+$query = "SELECT name FROM solutions WHERE id='$id'";
+$rows = $db->fetch_all_row($query);
+if ($db->total_affected_rows() < 1)
+redirect("solutions_content.php");
+
+//Check if the user clicks on the submit button
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	if (!empty($_POST['name'])) {
+		$data['name'] = $_POST['name'];
+	} else {
+		$errors[] = 'Please enter a valid name!';
+	}
+	
+	if (empty($_POST['editText'])) {
+	$errors[] = "The content of the page cannot be empty";
+	} else {
+		$data['content'] = $_POST['editText'];
+	}
+	
+	$data['priority'] = $_POST['priority'];
+	$data['link'] = $id;
+	
+	if (empty($errors)) { // If everything's OK...
+				
+		$value = $db->insert_query("solutions",$data);
+		
+		if ($value >= 1) { // If it ran OK.
+			redirect('solutions_content.php?s='.$id.'&action=add');	
+		} else { // If it did not run OK.
+			trigger_error('You could not be registered due to a system error. We apologize for any inconvenience.');
+		}
+	
+	} // End of empty($errors) IF.
+}
+// Retrieve the content from the database
+$query = "SELECT id, name from icons ORDER BY  `icons`.`name` ASC";
+$rows = $db->fetch_all_row($query);
+$option = "";
+foreach ($rows as $row){
+	$option .= "<option value='{$row['id']}'>{$row['name']}</option>";
+}
+// Retrieve the name of current page
+$query = "SELECT  name from solutions WHERE id = $id";
+$rows = $db->fetch_first_row($query);
+$name = $rows['name'];
+?>
+<?php include('includes/header.inc.php'); ?>      
+     </div>
+     <!--End of Top Container-->
+     
+     <section>
+     	<div id="dashboard"  class="container">
+            <div id="content" class="row">
+                <?php include('includes/breadcrumb.inc.php'); ?>
+                <div class="maincontent">
+                    <div id="tab-one">
+               			 <?php include('includes/dash-nav.inc.php'); ?>
+                      <div class="list-wrap">
+                          <h2>Add Content to <?php echo $name ?></h2>
+                          <form method="post" id="custom" enctype="multipart/form-data">                         
+							  	 <?php 
+										createFormInput('Name','name','text');
+								 ?>
+                                 <label>Priority</label>
+                                 
+                                 <select name="priority">
+                                 	<?php for($i=1; $i<=10; $i++) { ?>
+                                 	<option value="<?php echo $i ?>"><?php echo $i ?></option>
+                                    <?php } ?>
+                                 </select>
+                                 
+                                <?php createFormInput('Content','editText','textarea') ?>
+                                
+                                
+                              <div>
+                                    <input type="submit" class="btn" value="Add Page">
+								</div>
+                              <div class="clearfix"></div>
+                                
+                                <?php alert() ?>
+                            </fieldset>
+                        </form>
+                      </div>
+                      <!-- END List Wrap -->
+                      <div class="list-wrap-bottom"></div>
+                    </div>
+                      <!-- END Tab One -->
+                </div>
+                <!-- End of Main Content -->
+            </div>
+    	</div>
+     </section>
+    
+        <?php include('includes/footer.inc.php'); ?>
+		<?php include('includes/tinymce.inc.php'); ?>
+    </body>
+</html>
