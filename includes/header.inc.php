@@ -24,7 +24,7 @@
         <?php } else { ?>
         <link rel="stylesheet" href="css/sprites_icons.css">
 		<?php } ?>
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -37,12 +37,12 @@
     	<header id="top" class="row">
         	<!--Logo-->
         	<div class="span3"><div id="logo" class="ir"><h1>Highrachy</h1></div></div>
-            
+
             <!--Navigation-->
             <div class="span9">
             	<nav>
                    <ul id="top-nav" class="unstyled alignright">
-                   		
+
                       <?php if (isset($dashboard) && ($dashboard)) { ?>
                       <li><a href="dashboard.php"<?php if ($title=='dashboard') echo 'class="stays-active" ' ?>>Dashboard</a></li>
                       <li><a href="about-content.php"<?php if (isset($sub_title) && ($sub_title=='about_content')) echo 'class="stays-active" ' ?>>About Us</a></li>

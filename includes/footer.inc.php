@@ -1,5 +1,8 @@
 		<footer>
-		<?php
+        <?php
+        include_once('includes/config.inc.php');
+        require_once(DB);
+        require_once('functions/database.class.php');
         if (!isset($db)){
             $db = new Database(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         }
