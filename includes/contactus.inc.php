@@ -29,15 +29,15 @@ if (!(empty($_POST['comments']))) {
 }
 
 if (empty($errors)) { // If everything's OK...
-		
+
 		$subject = "Feedback From a Client ($name)";
 		$ourEmail = "nnamdi@highrachy.com";
-		
+
 		//Send the message to us
 		$headers = "From: {$name}\r\nReply-To: {$ourEmail}\r\n";
 		mail($ourEmail, $subject, $body,$headers);
 		$success = "Your message has been successfully received";
 		unset($_POST);
-		
+
 
 } // End of empty($errors) IF.

@@ -40,7 +40,12 @@
         <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
         <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-144x144-precomposed.png">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" href="css/highrachy.css">
+        <link rel="stylesheet" href="css/highrachy-overwrite.css">
         <?php if (isset($dashboard) && ($dashboard)) { ?>
         <link rel="stylesheet" href="css/fonts_icons.css">
         <link rel="stylesheet" href="css/dashboard.css">

@@ -1,9 +1,9 @@
-<?php 
+<?php
 # ******************** #
 # ***** SETTINGS ***** #
 
 // Errors are emailed here.
-$contact_email = 'harunpopson@gmail.com'; 
+$contact_email = 'harunpopson@gmail.com';
 if (!session_start())
 session_start();
 // Determine whether we're working on a local server
@@ -20,21 +20,21 @@ if ($local) {
 
 	// Always debug when running locally:
 	$debug = TRUE;
-	
+
 	// Define the constants:
 	define ('BASE_URI', './');
-	define ('BASE_URL',	'http://localhost/Highrachy/');
+	define ('BASE_URL',	'http://localhost/highrachy/');
 	define ('DB', 'includes/mysql.inc.php');
-	
+
 } else {
 
 	define ('BASE_URI', './');
 	define ('BASE_URL',	'http://www.highrachy.com/');
 	define ('DB', 'includes/mysql.inc.php');
-	
+
 }
-	
-/* 
+
+/*
  *	Most important setting...
  *	The $debug variable is used to set error management.
  *	To debug a specific page, add this to the index.php page:
@@ -66,30 +66,30 @@ if (!isset($debug)) {
 function my_error_handler ($e_number, $e_message, $e_file, $e_line, $e_vars) {
 
 	global $debug, $contact_email;
-	
+
 	// Build the error message.
 	$message = "An error occurred in script '$e_file' on line $e_line: \n<br />$e_message\n<br />";
-	
+
 	// Add the date and time.
 	$message .= "Date/Time: " . date('n-j-Y H:i:s') . "\n<br />";
-	
+
 	// Append $e_vars to the $message.
 	$message .= "<pre>" . print_r ($e_vars, 1) . "</pre>\n<br />";
-	
+
 	if ($debug) { // Show the error.
-	
+
 		echo '<p class="error">' . $message . '</p>';
-		
-	} else { 
-	
+
+	} else {
+
 		// Log the error:
 		error_log ($message, 1, $contact_email); // Send email.
-		
+
 		// Only print an error message if the error isn't a notice or strict.
 		if ( ($e_number != E_NOTICE) && ($e_number < 2048)) {
 			echo '<p class="error">A system error occurred. We apologize for the inconvenience.</p>';
 		}
-		
+
 	} // End of $debug IF.
 
 } // End of my_error_handler() definition.
@@ -126,9 +126,9 @@ function truncate($input,$maxChars,$maxWords=0,$more='...'){
 			return substr($input, 0,$maxChars).$more;
 		}
 
-		return $result . ($input == $result ? '' : $more);		
+		return $result . ($input == $result ? '' : $more);
 	}
-		
+
 }
 
 
@@ -144,9 +144,9 @@ function redirect($destination = 'login.php?err=2') {
 		exit(); // Quit the script.
 } // End of redirect fucntion
 
-function redirect_invalid_admin() {	
+function redirect_invalid_admin() {
 	// Check if the person is not the admin
-	
+
 	$destination = 'login.php?err=1';
 	$current_page_URL =(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
 	$current_page_URL .= $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
@@ -156,7 +156,7 @@ function redirect_invalid_admin() {
 		header("Location: $url");
 		exit(); // Quit the script.
 	}
-	
+
 } // End of redirect_invalid_admin() function.
 
 // ************ REDIRECTION ************ //
@@ -164,21 +164,22 @@ function redirect_invalid_admin() {
 
 function alert(){
 	global $errors, $success,$warning;
-	
-	 if (isset($errors)){
-		$allerror = "";
+
+	 if (isset($errors) && !empty($errors)){
+		$allerror = "<ul>";
 		foreach($errors as $value){
-			$allerror .= "$value <br>";
+			$allerror .= "<li>$value </li>";
 		}
-		
-		echo '<br><div class="alert alert-error alert-block"><h4>Error!</h4>'.$allerror.'</div>';
-		
+		$allerror .= "</ul>";
+
+		echo '<br><div class="alert alert-danger alert-block"><h4>Error!</h4>'.$allerror.'</div>';
+
 	}
-	
+
 	else if (isset($success)){
 		echo '<div class="alert alert-success"><strong>Success! </strong>'.$success.'</div>';
 		}
-	
+
 	else if (isset($warning)){
 		echo '<div class="alert"><strong>Warning! </strong>'.$warning.'</div>';
 	}
@@ -196,8 +197,8 @@ function top_link($page){
 	if ($sub == "view") $top_link .= " class='selected'";
 	$top_link .=" href='view-$page.php'>View ".ucfirst($page)."</a>  | <a";
 	if ($sub == "delete") $top_link .= " class='selected'";
-	$top_link .=" href='delete-$page.php'>Delete ".ucfirst($page)."</a></div><br>";	
-	
+	$top_link .=" href='delete-$page.php'>Delete ".ucfirst($page)."</a></div><br>";
+
 	echo $top_link;
 }
 //Check if it is the dashboard
@@ -219,24 +220,24 @@ function replace($text){
 function more($text = "", $number= 0, $more=" ..."){
 	//Strip off the tags in more for accurate number of text in it
 	$more = strip_tags($more);
-	
+
 	//Get the total of original word
 	$org_total = strip_tags(strlen($text));
-	
+
 	//Find the position of the last word by looking for the last space
 	if(strrpos(strip_tags($text)," ",0))
 		$f = strrpos(strip_tags($text)," ",0);
 	else $f = $org_total;
-	
+
 	//Extract to that space
 	$desc = substr(strip_tags($text),0,$f);
-	
+
 	//Get the total of extracted word
 	$ext_total = strip_tags(strlen($desc));
-	
-	//Check if the number of string you want is less that the number of string you got 
+
+	//Check if the number of string you want is less that the number of string you got
 	if ( (is_int($number) &&($number > 0))){
-		
+
 		//if the number of string you want is lesser, add a more text
 		if (($ext_total > $number)){
 			$desc = substr($desc,0, $number - strlen($more));

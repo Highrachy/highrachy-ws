@@ -2,21 +2,21 @@
 
 function alert(){
   global $errors, $success,$warning;
-  
+
    if (isset($errors)){
     $allerror = "";
     foreach($errors as $value){
       $allerror .= "$value <br>";
     }
-    
+
     echo '<br><div class="alert alert-error alert-block"><h4>Error!</h4>'.$allerror.'</div>';
-    
+
   }
-  
+
   else if (isset($success)){
     echo '<div class="alert alert-success"><strong>Success! </strong>'.$success.'</div>';
     }
-  
+
   else if (isset($warning)){
     echo '<div class="alert"><strong>Warning! </strong>'.$warning.'</div>';
   }
@@ -66,16 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   }
 
   if (empty($errors)) { // If everything's OK...
-      
+
       $subject = "Highrachy WeProtect Feedback - From ($name) ";
       $ourEmail = "david@highrachy.com";
-      
+
       //Send the message to us
       $headers = "From: {$name}\r\nReply-To: {$ourEmail}\r\n";
       @mail($ourEmail, $subject, $body,$headers);
       $success = "Your message has been successfully received";
       unset($_POST);
-      $_POST = array();  
+      $_POST = array();
 
   } // End of empty($errors) IF.
 
@@ -98,11 +98,11 @@ require('inc/form.php');
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="css/style1.css" id="colors"> 
+  <link rel="stylesheet" href="css/style1.css" id="colors">
 
   <!-- Google Webfonts - Lato -->
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic' rel='stylesheet'>
-  
+
   <!--[if IE]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -124,7 +124,7 @@ require('inc/form.php');
   });
 </script>
 
-  
+
 </head>
 <body id="home" data-spy="scroll" data-offset="83" data-target=".navbar">
 
@@ -149,11 +149,11 @@ require('inc/form.php');
                 </button>
               </div>
 
-          
+
           <!-- the logo - to put your own image, you need to change the image link in the style.css file -->
           <a class="navbar-brand logo animated fadeInLeft" href="index.php">Highrachy WeProtect</a>
-          
-            
+
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-responsive-collapse animated fadeInRight" id="main-menu">
               <ul class="nav navbar-nav pull-right">
@@ -167,9 +167,9 @@ require('inc/form.php');
 
         </div><!-- end container -->
       </nav><!-- end navbar -->
-      
+
     </header>
-	
+
   </section><!-- end HEADER SECTION -->
 
 
@@ -181,7 +181,7 @@ require('inc/form.php');
           <?php alert() ?>
         </div>
 
-        
+
       </div><!-- end row -->
     </div><!-- end container -->
   </section><!-- end SLIDER SECTION -->
@@ -191,7 +191,7 @@ require('inc/form.php');
   	<div class="container">
   		<div class="row">
         <div class="col-sm-12">
-            
+
           <div id="main-slider" class="flexslider">
             <ul class="slides">
               <li>
@@ -204,23 +204,23 @@ require('inc/form.php');
           </div><!-- end main slider -->
         </div>
 
-  			
+
   		</div><!-- end row -->
   	</div><!-- end container -->
   </section><!-- end SLIDER SECTION -->
 
   <div class="background">
     <div class="container content">
-      
+
     <!--////////// ABOUT  SECTION ///////////-->
     <section id="about">
       <div class="light-bg">
         <div class="row">
-    
+
           <div class="col-md-10 col-md-push-1">
             <div class="hero-quote">
               <h1>Welcome To Highrachy WeProtect by Highrachy</h1>
-              <p class="lead">Our unrivaled vehicle resilience solutions are superior to any other solutions in the industry ensuring that your protection is guaranteed. Our solutions are proven to be an integral part of all good vehicle management programs.</p>    
+              <p class="lead">Our unrivaled vehicle resilience solutions are superior to any other solutions in the industry ensuring that your protection is guaranteed. Our solutions are proven to be an integral part of all good vehicle management programs.</p>
             </div><!-- end hero-quote -->
           </div><!-- end col-md-10 col-offset-1 -->
 
@@ -233,33 +233,33 @@ require('inc/form.php');
      <!--////////// SOLUTIONS SECTION ///////////-->
     <section id="solutions" class="spacing">
       <div class="row">
-      
+
        <div class="col-xs-12">
          <div class="title">
            <h1>Our Solutions</h1>
-           <p class="lead">Our solutions are engineered by the best to ensure that your protection is <strong>guaranteed</strong>. They are also modular and have proven to be an integral part of various good vehicle management programs. Our vehicle resilience package comprises of two core components :</p>     
+           <p class="lead">Our solutions are engineered by the best to ensure that your protection is <strong>guaranteed</strong>. They are also modular and have proven to be an integral part of various good vehicle management programs. Our vehicle resilience package comprises of two core components :</p>
          </div><!-- end title -->
          <div class="title-hr"></div>
-      
+
          <!--/// THE FEATURE ICONS ///-->
          <div class="col-md-6">
            <figure>
            	 <img src="img/photo7.jpg" class="thumb" style="width:200px" alt="" class="slide-up" />
              <h3><a href="#tyre-sealant">Tyre Anti Puncture</a></h3>
              <p class="feature-description">Our <strong>Tyre anti-puncture</strong> solution instantly and permanently seals varying sizes of punctures to your vehicle tyres. This is achieved by installing a <strong>Tyre Sealant</strong> inside the tyre or tube after it must have undergone a health check and tyre repair process. </p>
-           </figure> 
+           </figure>
          </div><!-- end col-md-3  -->
-      
+
          <div class="col-md-6">
            <figure>
            	 <img src="img/photo2.jpg" class="thumb" style="width:200px"  alt="" class="slide-up" />
              <h3><a href="#window-film">Window Shatter Proofing</a></h3>
              <p class="feature-description">Our <strong>Window shatter proofing</strong> solution prevents windows from shattering when smashed and ultimately
              stalls an intruder's access while protecting the passengers and glass cuts and injuries. This achieved by attaching special window films to our vehicle windows</p>
-           </figure> 
+           </figure>
          </div><!-- end col-md-3  -->
        </div>
-         
+
       </div><!-- end row --><!-- end container -->
     </section><!-- end SOLUTIONS SECTION -->
 
@@ -269,18 +269,18 @@ require('inc/form.php');
       <div class="row push-bottom border">
         <div class="col-xs-12">
           <div class="col-sm-offset-1 col-sm-10">
-              
+
             <div class="title">
               <h1>Our Products</h1>
-              <p class="lead">Our unrivaled vehicle resilience solutions are superior to any other solutions in the industry ensuring that your protection is guaranteed.</p>      
+              <p class="lead">Our unrivaled vehicle resilience solutions are superior to any other solutions in the industry ensuring that your protection is guaranteed.</p>
             </div><!-- end title -->
             <div class="title-hr"></div>
           </div>
-        
+
           <div class="col-sm-5 col-sm-push-6 slide-right">
             <img src="img/photo8.jpg" class="thumb" alt="" title="" />
           </div><!-- end end col-sm-5 -->
-        
+
           <div  id="tyre-sealant" class="col-sm-5 col-sm-pull-4 slide-left">
             <h2>Tyre Sealant</h2>
             <p class="lead text-justify">Our tyre sealants can be used in any pneumatic tyre and are used for permanent puncture prevention in a wide range of on and off road vehicles. These sealants instantly and permanently seal up punctures ranging up to 15mm for on road vehicles and our higher grade sealant seals punctures ranging up to 30mm for off road equipments.</p>
@@ -292,12 +292,12 @@ require('inc/form.php');
               <h3>How it Works</h3>
                 <p class="lead dark text-justify">As the tyre rotates, the product spreads evenly over the inside surface. Immediately a puncture occurs, the air pressure in the tyre forces millions of fiber particles and fillers suspended in the sealant to interlock and form a plug which prevents any further air loss. This action will be complete within two or three revolutions of the wheel.</p>
                 <p>This is a mechanical process not a chemical reaction and it happens so fast that the driver may not know a puncture occured.</p>
-                          
+
             </div>
             <div class="col-sm-5 col-sm-offset-1 slide-left">
              <h3>Benefits of Tyre Sealants</h3>
               <ul class="text-justify">
-              	 <li>Cost Savings on; 
+              	 <li>Cost Savings on;
               	 	<ul>
               	 		<li>Frequency of tyre replacement</li>
               	 		<li>Reduced call out for punctures and increases the tyre life</li>
@@ -314,7 +314,7 @@ require('inc/form.php');
             </div>
 
             <div class="col-sm-5 slide-right">
-              <h3>Who Uses Tyre Sealants?</h3>      
+              <h3>Who Uses Tyre Sealants?</h3>
               <p>Tyre sealants are now widely used by major companies worldwide including:</p>
               <ul>
                 <li>Private Car Owners</li>
@@ -329,18 +329,18 @@ require('inc/form.php');
             </div>
 
           </div>
- 
+
         </div>
 
       </div><!-- end row --><!-- end container -->
 
       <div class="spacing">
         <div class="row push-bottom border">
-        
+
           <div class="col-sm-5 col-sm-push-1 slide-left">
             <img src="img/photo4.jpg" class="thumb" alt="" title="">
           </div><!-- end col-sm-5 col-offset-1 -->
-        
+
           <div id="window-film" class="col-sm-5 col-sm-push-1 slide-right">
             <h2>Window Film</h2>
             <p class="lead text-justify">Our shatter proof security clear window film is the ultimate protection against the most severe attack situations. Our high grade, high tech window protects attacks on vehicle while stationary or in motion and safeguard users.</p>
@@ -353,7 +353,7 @@ require('inc/form.php');
                 <p class="lead dark text-justify">Our safety security film 800 (SSF-800), 8MIL - PLY 2, a 90% visible light transmission (VLT) film is installed
                 at the inner, outer or both inner and outer side of vehicle windows leaving the windows shatter proof. <br> Our window film can withstand very hard impact/blows and does not collapse. In cases where the window shatters the film holds the shattered pieces together and this still doesn't penetrate the film
                 keeping the occupants\users of the vehicle safe and secured.</p>
-                          
+
             </div>
             <div class="col-sm-5 col-sm-offset-1 slide-left">
              <h3>Benefits of Window Films</h3>
@@ -366,7 +366,7 @@ require('inc/form.php');
             </div>
 
             <div class="col-sm-5 slide-right">
-              <h3>Who Uses Window Film?</h3>      
+              <h3>Who Uses Window Film?</h3>
               <p>Window films are now widely used by major companies worldwide including:</p>
               <ul>
                 <li>Private Car Owners</li>
@@ -381,7 +381,7 @@ require('inc/form.php');
             </div>
 
           </div>
-                    
+
         </div><!-- end row --><!-- end container -->
       </div><!-- end light-bg -->
     </section><!-- end PRODUCTS SECTION -->
@@ -392,10 +392,10 @@ require('inc/form.php');
 
         <div class="title">
           <h1>Get in Touch</h1>
-          <p class="lead">Feel free to ask any questions via the contact form below.</p>      
+          <p class="lead">Feel free to ask any questions via the contact form below.</p>
         </div><!-- end title -->
         <div class="title-hr-dark"></div>
-      
+
         <div class="col-sm-4">
           <h3>Our Contact Details</h3>
           <p class="lead">
@@ -406,11 +406,11 @@ require('inc/form.php');
           +234 803 505 3278
           </p>
         </div><!-- end col-sm-5 -->
-      
+
         <div class="col-sm-7 contact-form spacing">
-      
+
           <div id="contact-error"></div>
-            
+
           <form id="contact-form" class="form-horizontal" method="POST"><!-- id="ajax-contact-form" -->
             <div class="form-group">
               <label for="name" class="col-md-3 control-label">Your Name</label>
@@ -419,7 +419,7 @@ require('inc/form.php');
                 <?php show_errors('name') ?>
               </div>
             </div><!-- end form-group -->
-      
+
             <div class="form-group">
               <label for="email" class="col-md-3 control-label">Your E-mail</label>
               <div class="col-md-9">
@@ -427,8 +427,8 @@ require('inc/form.php');
                 <?php show_errors('email') ?>
               </div>
             </div><!-- end form-group -->
-      
-      
+
+
             <div class="form-group">
               <label for="phone" class="col-md-3 control-label">Phone Number</label>
               <div class="col-md-9">
@@ -436,7 +436,7 @@ require('inc/form.php');
                 <?php show_errors('phone') ?>
               </div>
             </div><!-- end form-group -->
-      
+
             <div class="form-group textarea">
               <label for="message" class="col-md-3 control-label">Message</label>
               <div class="col-md-9">
@@ -445,20 +445,20 @@ require('inc/form.php');
                 <?php show_errors('message') ?>
               </div>
             </div><!-- end form-group -->
-              
+
             <input type="hidden" name="save" value="contact">
             <div class="col-sm-offset-6">
             <button class="btn btn-large btn-primary" type="submit" name="submit">Send Message!</button>
             </div>
           </form>
-      
+
         </div><!-- end col-sm-7 -->
       </div><!-- end row --><!-- end container -->
     </section><!-- end CONTACT SECTION -->
 
     </div>
   </div>
-    
+
 
     <footer>
             <div class="container">
@@ -468,9 +468,9 @@ require('inc/form.php');
                                 <p class="home"><span> Address : </span>Suite 1, Wabeco Filling Station, Lekki-Epe Expressway, Lakowe, Lagos.</p>
                                 <p class="email"><span>Email : </span><a href="mailto:nnamdi@highrachy.com">nnamdi@highrachy.com</a></p>
                                 <p class="phone"><span>Phone : </span><strong>+234 802 833 7440</strong></p>
-                                </address> 
+                                </address>
                 </div>
-                
+
                 <div class="col-sm-4">
                   <h3>Our Services</h3>
                   <p>We pride ourselves in our excellent service delivery standards in line with our core competencies. These competencies are;  </p>
@@ -482,15 +482,15 @@ require('inc/form.php');
                   <h3>Why Choose Us</h3>
                   <p>Far from a mere technology company, we are a solutions company that goes way beyond solving problems as identified by you, but also constantly enhancing your lives, lifestyles and living. Our solutions are inspired by ideas that promise more convenience, comfort, security, safety, income and plain fun just for YOU.</p>
                 </div>
-                
+
                 <div class="clearfix"></div>
             <div id="copyright" class="row">
                     <div class="clearfix"></div>
                     <div class="col-xs-12 pull-left">Copyright &copy; 2014 Highrachy. All rights reserved.</div>
             </div>
-            
+
          </div>
-         
+
      </footer>
 
   <!--////////// JAVASCRIPT FILES INCLUDES //////////-->
@@ -500,6 +500,3 @@ require('inc/form.php');
   <script src="js/custom.js"></script> <!-- Custom Js file for javascript in html -->
   <!-- End JavaScript -->
 </html>
-
-
-&#8358;

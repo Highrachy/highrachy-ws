@@ -15,7 +15,7 @@ private $link_id = 0;
 //This corresponds to the normal $result
 private $query_id = 0;
 
-	
+
 #-#############################################
 # desc: constructor
 public function __construct($server, $user, $pass, $database, $pre=''){
@@ -24,10 +24,10 @@ public function __construct($server, $user, $pass, $database, $pre=''){
 	$this->pass=$pass;
 	$this->database=$database;
 	$this->pre=$pre;
-	
+
 	// Make the connection:
 	$this->link_id = @mysqli_connect($this->server, $this->user, $this->pass, $this->database);
-	
+
 	// If no connection could be made, trigger an error:
 	if (!$this->link_id) {
 		trigger_error('Could not connect to MySQL: ' . mysqli_connect_error());
@@ -46,15 +46,15 @@ public function __construct($server, $user, $pass, $database, $pre=''){
 #-#############################################
 # desc: Escape Data
 public function escape_data($data){
-		
+
 // Strip the slashes if Magic Quotes is on:
-if (get_magic_quotes_gpc()) $data = stripslashes($data);
+// if (get_magic_quotes_gpc()) $data = stripslashes($data);
 
 // Apply trim() and mysqli_real_escape_string():
 return @mysqli_real_escape_string ($this->link_id, trim ($data));
 
 }#-#Escape Data()
-	
+
 
 
 #-#############################################
@@ -69,7 +69,7 @@ protected function query($sql) {
 		trigger_error("<b>MySQL Query fail:</b> $sql");
 		return 0;
 	}
-	
+
 	$this->affected_rows = @mysqli_affected_rows($this->link_id);
 
 	return $this->query_id;
@@ -150,6 +150,7 @@ public function insert_query($table, $data) {
 		else $v.= "'".$this->escape_data($val)."', ";
 	}
 
+
 	$q .= "(". rtrim($n, ', ') .") VALUES (". rtrim($v, ', ') .");";
 
 	$query_id = $this->query($q);
@@ -171,7 +172,7 @@ public function update_query($table, $data, $where='1',$use_limit = true) {
 	foreach($data as $key=>$val) {
 		if(strtolower($val)=='null') $q.= "`$key` = NULL, ";
 		elseif(strtolower($val)=='now()') $q.= "`$key` = NOW(), ";
-        elseif(preg_match("/^increment\((\-?\d+)\)$/i",$val,$m)) $q.= "`$key` = `$key` + $m[1], "; 
+        elseif(preg_match("/^increment\((\-?\d+)\)$/i",$val,$m)) $q.= "`$key` = `$key` + $m[1], ";
 		else $q.= "`$key`='".$this->escape_data($val)."', ";
 	}
 
