@@ -52,9 +52,9 @@ $debug = TRUE;
  */
 
 // Assume debugging is off.
-// $debug = TRUE; //Remove this when you are through
-if (!isset($debug)) {
-	$debug = FALSE;
+$debug = FALSE;
+if ($local) {
+	$debug = TRUE; //Remove this when you are through
 }
 
 # ***** SETTINGS ***** #

@@ -96,10 +96,14 @@ function check_range($name,$length="0-10"){
 }
 
 function is_valid_image($picture){
+		if (is_valid_file($picture)) {
 			if (!((preg_match('/^image\/p?jpeg$/i', $_FILES[$picture]['type']) or
+			preg_match('/^image\/jpg$/i', $_FILES[$picture]['type']) or
 			preg_match('/^image\/gif$/i', $_FILES[$picture]['type']) or
 			preg_match('/^image\/(x-)?png$/i', $_FILES[$picture]['type']))))
 			return false; else return true;
+		}
+		else return false;
 }
 
 function is_valid_file($file){
@@ -118,7 +122,6 @@ function form_method($method="POST"){
 
 }
 function validate($name,$command,$method="POST"){
-
 	global $errors;
 	$length = "";
 	#if = is in the command, assign it into the command and length
@@ -128,13 +131,15 @@ function validate($name,$command,$method="POST"){
 
 	$form_variables = form_method($method);
 	//Get the submitted form
-	if(isset($form_variables[$name])){
+	if(isset($form_variables[$name]) || $command == 'image'){
 
 		#Check if to use $_POST OR $_GET
-		if ($command == 'image')
+		if ($command == 'image'){
 			$input_value = $name;
-	    else $input_value = $form_variables[$name];
-
+		}
+	  else{
+			$input_value = $form_variables[$name];
+		}
 
 		#Assume the $result returned is true
 		$result=true;
@@ -224,7 +229,12 @@ function assign($name,$command="",$error="",$method="POST"){
 		#get the form method
 		$form_variables = form_method($method);
 
-		return $form_variables[$name];
+		if ($command == 'image'){
+			return $name;
+		}
+	  else{
+			return $form_variables[$name];
+		}
 	} else { #if the validation fails
 			$errors[$name] = $error;
 	}

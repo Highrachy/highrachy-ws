@@ -3,6 +3,8 @@
 include('Mail.php');
 require_once ('Mail/mime.php'); // PEAR Mail_Mime packge
 
+global $local;
+
 $script = false;
 include('includes/config.inc.php');
 require(MAILER);
@@ -10,6 +12,7 @@ require(DB);
 require('functions/database.class.php');
 require('functions/form.php');
 require('functions/validation.php');
+require('functions/upload.inc.php');
 $db = new Database(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 $list_of_properties = [
@@ -60,10 +63,21 @@ if (isset($key) && (array_key_exists($key, $list_of_properties))){
   $property = $list_of_properties[$key];
 }
 
-
 //Add a new Testimonial
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   $data = $errors = array();
+
+  # -- Tenant Picture
+  // check if valid image
+  $pics= assign('tenant_picture','image','Please upload a valid image');
+  if (isset($pics)) {
+    $data['tenant_picture'] = upload_file('tenant_picture', 'tenant-'.time(), 'img/tenants/');
+
+    if (!isset($data['tenant_picture'])) {
+      $errors['tenant_picture'] = "Unable to upload image. Please try again";
+    }
+  }
+
 
   # -- Tenant Full Name
   $data['tenant_full_name'] = assign('tenant_full_name','req','Please enter a valid Full Name');
@@ -335,7 +349,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
   # -- Persons with Special Needs
   if (exists('persons_with_special_needs_details')) {
-    $data['persons_with_special_needs_details'] = assign('more_details_on_employment','minlen=3','Please enter a valid persons with special needs details');
+    $data['persons_with_special_needs_details'] = assign('persons_with_special_needs_details','minlen=3','Please enter a valid persons with special needs details');
   }
 
   # -- Pets
@@ -350,12 +364,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data['confirmation'] = $confirmation[0];
   }
 
+
 	if (empty($errors)) { // If everything's OK...
     // Add property information
     $data['property_name'] = $property['name'];
     $data['property_address'] = $property['address'];
     $data['property_description'] = $property['description'];
     $name = $data['tenant_full_name'];
+
 
 
     // Email Information
@@ -370,7 +386,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $body = "<html><body>";
     foreach ($data as $key => $value) {
-      $body .= "<strong>".ucwords(str_replace('_', ' ', $key))."</strong>: ".$value."<br />";
+      if ($key == 'tenant_picture') {
+        $body .= "<img src='".BASE_URL."img/tenants/$value' alt='Tenant Picture' style='width:128px;'> <br />";
+      } else {
+        $body .= "<strong>".ucwords(str_replace('_', ' ', $key))."</strong>: ".$value."<br />";
+      }
     }
     $body .= "</body></html>";
 
@@ -379,19 +399,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $text = '';
     $html = $body;
 
-    $mime = new Mail_mime($crlf);
-    $mime->setTXTBody($text);
-    $mime->setHTMLBody($html);
+    if ($local) {
+     echo "<div style='background: white;'>
+        $body
+      </div>";
+    } else {
+      $mime = new Mail_mime($crlf);
+      $mime->setTXTBody($text);
+      $mime->setHTMLBody($html);
 
+      $headers = array('From' => $from, 'To' => $to, 'Subject' => $subject, 'Reply-To' => $email); // the email headers
 
-    $headers = array('From' => $from, 'To' => $to, 'Subject' => $subject, 'Reply-To' => $email); // the email headers
-
-    //do not ever try to call these lines in reverse order
-    $body = $mime->get();
-    $headers = $mime->headers($headers);
-
-    $smtp = Mail::factory('smtp', array('host' =>'localhost', 'auth' => true, 'username' => $username, 'password' => $password, 'port' => '25')); // SMTP protocol with the username and password of an existing email account in your hosting account
-    $mail = $smtp->send($to, $headers, $body); // sending the email
+      //do not ever try to call these lines in reverse order
+      $body = $mime->get();
+      $headers = $mime->headers($headers);
+      $smtp = Mail::factory('smtp', array('host' =>'localhost', 'auth' => true, 'username' => $username, 'password' => $password, 'port' => '25')); // SMTP protocol with the username and password of an existing email account in your hosting account
+      $mail = $smtp->send($to, $headers, $body); // sending the email
+    }
 
     $value = $db->insert_query("tenants",$data);
 
@@ -426,6 +450,23 @@ function FillManagerDetails(form) {
     form.employment_manager_position.value = 'Self Employed';
     form.employment_manager_phone.value = form.mobile.value;
     form.employment_manager_email.value = form.personal_email.value;
+  }
+}
+
+function previewFile() {
+  var preview = document.querySelector('img.tenant_img');
+  var file = document.querySelector('input[type=file]').files[0];
+  var reader = new FileReader();
+
+  reader.onloadend = function() {
+
+    preview.src = reader.result;
+  }
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = "img/tenants/tenant-avatar.png";
   }
 }
 </script>
@@ -468,8 +509,7 @@ function FillManagerDetails(form) {
           <div id="contact" class="col-sm-12">
 
             <div id="message"></div>
-            <form class="form-horizontal form-overwrite" method="post">
-
+            <form class="form-horizontal form-overwrite" method="post" enctype="multipart/form-data">
               <h3 class="mt-30 text-red">Property Details</h3>
 
               <label class="control-label">Property Name:</label>
@@ -496,6 +536,16 @@ function FillManagerDetails(form) {
                 below.
               </p>
 
+              <div class="text-center mb-5">
+                <img class="tenant_img avatar-img" src="img/tenants/tenant-avatar.png"><br />
+
+                <div class="input-group-btn">
+                  <label for="image" class="btn btn-default">Upload Picture</label>
+                  <?php show_errors('tenant_picture') ?>
+                  <input id="image" type="file" name="tenant_picture" onChange="previewFile()" accept="image/*"
+                    style="visibility:hidden;" />
+                </div>
+              </div>
 
               <div class="form-group">
                 <div class="col-sm-6">

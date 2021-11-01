@@ -4,40 +4,40 @@ class Image
 	var $max_file_size = 2097152; #10MB
 	var $allow_types = array('image/jpeg', 'image/png', 'image/gif');
 	var $errors;
-	
+
 	public $destination = 'uploaded.jpeg';
-	
+
 	public $constraint = 'w';
-	
+
 	public $size = 200;
-	
+
 	public $quality = 100;
-	
+
 	public $cropwidth = false;
 	public $cropheight = false;
-	
+
 	public $align;
-	 
+
 	public function __construct($imagefilepath)
 	{
 		$this->tmp_name = $imagefilepath;
-		
+
 		$this->image_size = filesize($this->tmp_name);
-		
+
 		$imagedata = getimagesize($this->tmp_name);
-		
-		
+
+
 		$this->width = $imagedata[0];
 		$this->height = $imagedata[1];
-		
+
 		$this->type = $imagedata['mime'];
-		
+
 		$this->is_valid = $this->is_valid_type();
 		$this->is_valid = $this->is_valid_size();
-		
+
 	}
-	
-	
+
+
 	public function is_valid_type()
 	{
 		if (in_array($this->type, $this->allow_types))
@@ -61,47 +61,47 @@ class Image
 			return false;
 		}
 	}
-	
-	
+
+
 	public function render()
-	{		
+	{
 		$destname = $this->destination;
 		$constraint = $this->constraint;
 		$new_side = $this->size;
 		$cropw = $this->cropwidth;
 		$croph = $this->cropheight;
 		$quality = $this->quality;
-		
-		
-		
-		if ($constraint == "h") 
+
+
+
+		if ($constraint == "h")
 		{
 			$new_w = ($new_side / $this->height) * $this->width;
-			$new_h = $new_side;	
-			
+			$new_h = $new_side;
+
 			$canvasw = ($cropw!=false) ? $cropw : $new_w;
 			$canvash = ($croph!=false) ? $croph : $new_h;
-		
+
 			$canvas = imagecreatetruecolor($canvasw, $canvash);
-			
+
 			$x = ($cropw==false) ? 0 : -(($new_w - $cropw)/2);
 			$y = ($croph==false) ? 0 : -(($new_h - $croph)/2);
-			
-		} 
-		else if ($constraint == "w") 
+
+		}
+		else if ($constraint == "w")
 		{
 			$new_h = ($new_side / $this->width) * $this->height;
 			$new_w = $new_side;
-			
+
 			$canvasw = ($cropw!=false) ? $cropw : $new_w;
 			$canvash = ($croph!=false) ? $croph : $new_h;
-		
+
 			$canvas = imagecreatetruecolor($canvasw, $canvash);
-			
+
 			$x = ($cropw==false) ? 0 : -(($new_w - $cropw)/2);
 			$y = ($croph==false) ? 0 : -(($new_h - $croph)/2);
-		} 
-		else if ($constraint == "t") 
+		}
+		else if ($constraint == "t")
 		{
 			if($this->height > $this->width)
 			{
@@ -114,89 +114,92 @@ class Image
 			else if($this->height <= $this->width)
 			{
 				$new_w = ($new_side / $this->height) * $this->width;
-				$new_h = $new_side;	
-				
+				$new_h = $new_side;
+
 				$x = -(($new_w-$new_side)/2);
 				$y = 0;
 			}
-			
+
 			$canvas = imagecreatetruecolor($new_side, $new_side);
 		}
-		else 
+		else
 		{
 			$new_h = $this->height;
 			$new_w = $this->width;
-			
+
 			$x = $y = 0;
-			
+
 			$canvas = imagecreatetruecolor($new_w, $new_h);
 		}
-		
+
 		switch($this->type)
 		{
 			case 'image/jpeg':
 				$ic = imagecreatefromjpeg($this->tmp_name);
 				break;
-				
+
 			case 'image/gif':
-				$ic = imagecreatefromgif($this->tmp_name);			
+				$ic = imagecreatefromgif($this->tmp_name);
 				break;
-				
+
 			case 'image/png':
-				$ic = imagecreatefrompng($this->tmp_name);				
+				$ic = imagecreatefrompng($this->tmp_name);
 				break;
 		}
-		
-		imagecopyResampled($canvas, 
-							$ic, 
-							$x, $y, 0, 0, 
-							$new_w, $new_h, 
+
+		imagecopyResampled($canvas,
+							$ic,
+							$x, $y, 0, 0,
+							$new_w, $new_h,
 							$this->width, $this->height);
-		
+
 		imagejpeg($canvas, $destname, $quality);
-		
+
 		imagedestroy($canvas);
-	}	
-	
+	}
+
 	public function done()
 	{
 		unlink($this->tmp_name);
 	}
-	
+
 }
 
 function upload_image($file_upload,$new_image_name,$destination="images/",$resizeto="100",$resizeby="w"){
-	
+
 	define('QUALITY', 100);
-	
+
 	$new_image_name = rename_file($_FILES[$file_upload]['name'],$new_image_name,$destination);
-	
+
 	$image = new Image($_FILES[$file_upload]['tmp_name']);
-	
+
 	$image->destination = $destination.$new_image_name;
 	$image->constraint = $resizeby;
 	$image->size = $resizeto;
 	$image->quality = QUALITY;
-	
+
 	$image->render();
 	return $new_image_name;
 }
 
 function upload_file($file_upload,$new_file_name,$destination="./images"){
-	
+
 	# - Check if the file exist on the server, rename if necessary
 	$new_file_name = rename_file($_FILES[$file_upload]['name'],$new_file_name,$destination);
-	
+
 	$path = $destination.$new_file_name;
-	
-	if (is_uploaded_file($_FILES[$file_upload]['tmp_name'])){ 
+
+	// var_dump($_FILES);
+
+
+	if (is_uploaded_file($_FILES[$file_upload]['tmp_name'])){
 		if (move_uploaded_file($_FILES[$file_upload]['tmp_name'],$path)){
 			return $new_file_name;
 		} else {
 			$errors[] = "Could not move the file!";
 			return false;
 		}
-	
+
 	} else { // The file could not be uploaded
 		$errors[] = "Could not save file as $new_file_name";
 		return false;
@@ -209,25 +212,25 @@ function rename_file($file_upload,$new_file_name,$destination="images/"){
 		//Set the overall base name for the files
 		# - Assign the base name as the new_file_name given
 		$base = $new_file_name;
-		
+
 		# - Get the extension of the uploaded file
 		$extension = '.'.get_extension($file_upload);
-				
+
 		$fileName = $base.$extension;
-		
+
 		//Set the Destination and scan if the file is present.
 	    $existing = scandir($destination);
-		
+
 		//If the file is present, rename the file by appending _1, _2 e.t.c
-	    if (in_array($fileName, $existing)) {			
+	    if (in_array($fileName, $existing)) {
 			$i = 1;
 			do {
 			  $fileName = $base.'_'.$i++.$extension;
 			} while (in_array($fileName, $existing));
 		}
-		
+
 		return $fileName;
-	
+
 }
 
 function get_extension($file_upload){
@@ -239,19 +242,19 @@ return pathinfo($file_upload,PATHINFO_FILENAME);
 }
 ?>
 
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-	$errors = array();
-	$name = "";
-	$name = upload_file('slideshow_pics','testing',"images/");
-	if ($name != "") echo "Your picture has been successfully added as $name";
-	foreach ($errors as $error)
-		echo "$error<br>";
-} 
+<!-- <?php
+// if ($_SERVER['REQUEST_METHOD'] == 'POST')
+// {
+// 	$errors = array();
+// 	$name = "";
+// 	$name = upload_file('slideshow_pics','testing',"images/");
+// 	if ($name != "") echo "Your picture has been successfully added as $name";
+// 	foreach ($errors as $error)
+// 		echo "$error<br>";
+// }
 ?>
-<form method="post" enctype="multipart/form-data"> 
+<form method="post" enctype="multipart/form-data">
     <input type="file" name="slideshow_pics">
     <input type="submit" class="btn" value="Add Slideshow">
 </form>
-
+ -->
