@@ -36,6 +36,7 @@ h6 {
 
 .text-small {
   font-size: 12px !important;
+  display: block;
 }
 
 .form-overwrite .control-label {
@@ -79,15 +80,23 @@ ol li {
 }
 
 .mb-15 {
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
 }
 
 .mt-30 {
-  margin-top: 30px;
+  margin-top: 30px !important;
 }
 
 .mt-60 {
-  margin-top: 60px;
+  margin-top: 60px !important;
+}
+
+.mb-15 {
+  margin-bottom: 15px !important;
+}
+
+.mb-30 {
+  margin-bottom: 30px !important;
 }
 
 .font-weight-bold {
@@ -110,4 +119,8 @@ ol li {
 .text-left {
   text-align: left !important;
   padding-left: 10px;
+}
+
+.data-protection-statement {
+  color: #333;
 }

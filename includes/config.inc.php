@@ -25,12 +25,14 @@ if ($local) {
 	define ('BASE_URI', './');
 	define ('BASE_URL',	'http://localhost/highrachy/');
 	define ('DB', 'includes/mysql.inc.php');
+	define ('MAILER', 'includes/mailer.inc.php');
 
 } else {
 
 	define ('BASE_URI', './');
 	define ('BASE_URL',	'http://www.highrachy.com/');
 	define ('DB', 'includes/mysql.inc.php');
+	define ('MAILER', 'includes/mailer.inc.php');
 
 }
 
@@ -50,7 +52,7 @@ $debug = TRUE;
  */
 
 // Assume debugging is off.
-$debug = TRUE; //Remove this when you are through
+// $debug = TRUE; //Remove this when you are through
 if (!isset($debug)) {
 	$debug = FALSE;
 }
@@ -83,11 +85,11 @@ function my_error_handler ($e_number, $e_message, $e_file, $e_line, $e_vars) {
 	} else {
 
 		// Log the error:
-		error_log ($message, 1, $contact_email); // Send email.
+		// error_log ($message, 1, $contact_email); // Send email.
 
 		// Only print an error message if the error isn't a notice or strict.
 		if ( ($e_number != E_NOTICE) && ($e_number < 2048)) {
-			echo '<p class="error">A system error occurred. We apologize for the inconvenience.</p>';
+			// echo '<p class="error">A system error occurred. We apologize for the inconvenience.</p>';
 		}
 
 	} // End of $debug IF.

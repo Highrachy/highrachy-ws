@@ -64,3 +64,4 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/macos,windows
 includes/mysql.inc.php
 includes/config.inc.php
+includes/mailer.inc.php

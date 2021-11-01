@@ -1,7 +1,11 @@
 <?php $title = "contact";
 
+include('Mail.php');
+require_once ('Mail/mime.php'); // PEAR Mail_Mime packge
+
 $script = false;
 include('includes/config.inc.php');
+require(MAILER);
 require(DB);
 require('functions/database.class.php');
 require('functions/form.php');
@@ -155,29 +159,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   $data['emergency_contact_address'] = assign('emergency_contact_address','req','Please enter a valid emergency contact address');
 
   # -- Landlord Full Name
-  if (exists('landlord_full_name')) {
-    $data['landlord_full_name'] = assign('landlord_full_name','minlen=3','Please enter a valid landlord full name');
-  }
+  $data['landlord_full_name'] = assign('landlord_full_name','minlen=3','Please enter a valid landlord full name');
+
 
   # -- Landlord Address
-  if (exists('landlord_address')) {
-    $data['landlord_address'] = assign('landlord_address','minlen=3','Please enter a valid landlord address');
-  }
+  $data['landlord_address'] = assign('landlord_address','minlen=3','Please enter a valid landlord address');
+
 
   # -- Landlord Postcode
-  if (exists('landlord_postcode')) {
-    $data['landlord_postcode'] = assign('landlord_postcode','minlen=3','Please enter a valid landlord postcode');
-  }
+  $data['landlord_postcode'] = assign('landlord_postcode','minlen=3','Please enter a valid landlord postcode');
 
   # -- Landlord Telephone
-  if (exists('landlord_telephone')) {
-    $data['landlord_telephone'] = assign('landlord_telephone','minlen=3','Please enter a valid landlord telephone');
-  }
+  $data['landlord_telephone'] = assign('landlord_telephone','minlen=3','Please enter a valid landlord telephone');
 
   # -- Landlord Email
-  if (exists('landlord_email')) {
-    $data['landlord_email'] = assign('landlord_email','minlen=3','Please enter a valid landlord telephone');
-  }
+  $data['landlord_email'] = assign('landlord_email','minlen=3','Please enter a valid landlord telephone');
 
   # -- Never Rented Before
   if (exists('never_rented_before')) {
@@ -197,49 +193,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   }
 
   # -- Company Name
-  if (exists('employment_company_name')) {
-    $data['employment_company_name'] = assign('employment_company_name','minlen=3','Please enter a valid company name');
-  }
+  $data['employment_company_name'] = assign('employment_company_name','minlen=3','Please enter a valid company name');
 
   # -- Position Title
-  if (exists('employment_position_title')) {
-    $data['employment_position_title'] = assign('employment_position_title','minlen=3','Please enter a valid position title');
-  }
+  $data['employment_position_title'] = assign('employment_position_title','minlen=3','Please enter a valid position title');
 
   # -- Contract Type
-  if (exists('employment_contract_type')) {
-    $data['employment_contract_type'] = assign('employment_contract_type','req','Please select a valid option');
-  }
+  $data['employment_contract_type'] = assign('employment_contract_type','req','Please select a valid option');
 
   # -- Company Address
-  if (exists('employment_company_address')) {
-    $data['employment_company_address'] = assign('employment_company_address','minlen=3','Please enter a valid company address');
-  }
+  $data['employment_company_address'] = assign('employment_company_address','minlen=3','Please enter a valid company address');
+
+  # -- Start Date
+  $data['month_of_start_date'] = assign('month_of_start_date','req','Select your Month of Start Date');
+  $data['year_of_start_date'] = assign('year_of_start_date','req','Select your Year of Start Date');
+
 
   # -- Postcode
-  if (exists('employment_postcode')) {
-    $data['employment_postcode'] = assign('employment_postcode','req','Please enter a valid postcode');
-  }
+  $data['employment_postcode'] = assign('employment_postcode','req','Please enter a valid postcode');
+
 
   # -- Manager Name
-  if (exists('employment_manager_name')) {
-    $data['employment_manager_name'] = assign('employment_manager_name','minlen=3','Please enter a valid manager name');
-  }
+  $data['employment_manager_name'] = assign('employment_manager_name','minlen=3','Please enter a valid manager name');
+
 
   # -- Manager Position
-  if (exists('employment_manager_position')) {
-    $data['employment_manager_position'] = assign('employment_manager_position','minlen=3','Please enter a valid manager position');
-  }
+  $data['employment_manager_position'] = assign('employment_manager_position','minlen=3','Please enter a valid manager position');
+
 
   # -- Manager Email
-  if (exists('employment_manager_email')) {
-    $data['employment_manager_email'] = assign('employment_manager_email','email','Please enter a valid manager email');
-  }
+  $data['employment_manager_email'] = assign('employment_manager_email','email','Please enter a valid manager email');
+
 
   # -- Manager Phone
-  if (exists('employment_manager_phone')) {
-    $data['employment_manager_phone'] = assign('employment_manager_phone','req','Please enter a valid manager phone');
-  }
+  $data['employment_manager_phone'] = assign('employment_manager_phone','minlen=5','Please enter a valid manager phone');
+
 
   # -- Employment Details
   if (exists('more_details_on_employment')) {
@@ -350,25 +338,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data['persons_with_special_needs_details'] = assign('more_details_on_employment','minlen=3','Please enter a valid persons with special needs details');
   }
 
-  # -- Cats
-  if (exists('cats')) {
-    $cats = assign('cats','req','Please select a valid option');
-    if (is_array($cats)) {
-      $data['cats'] = $cats[0];
-    }
-  }
-
-  # -- Dogs
-  if (exists('dogs')) {
-    $dogs = assign('dogs','req','Please select a valid option');
-    if (is_array($dogs)) {
-      $data['dogs'] = $dogs[0];
-    }
-  }
-
-  # -- Other Pets
-  if (exists('other_pets')) {
-    $data['other_pets'] = assign('other_pets','req','Please select a valid other pets');
+  # -- Pets
+  if (exists('pets')) {
+    $data['pets'] = assign('pets','req','Please enter a valid pet name');
   }
 
 
@@ -383,19 +355,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data['property_name'] = $property['name'];
     $data['property_address'] = $property['address'];
     $data['property_description'] = $property['description'];
-    // $name = $data['tenant_full_name'];
-    // $subject = "Tenant Application Form ($name)";
-		// $ourEmail = "haruna@highrachy.com";
+    $name = $data['tenant_full_name'];
 
-    // $body = "";
-    // foreach ($data as $key => $value) {
-    //   $body .= "<strong>".$key."</strong>: ".$value."\n";
-    // }
 
-		//Send the message to us
-		// $headers = "From: {$name}\r\nReply-To: {$ourEmail}\r\n";
-		// mail($ourEmail, $subject, $body,$headers);
+    // Email Information
+    $subject = "[Tenant Application Form] $name";
 
+    $username = MAILER_EMAIL; // your email address
+    $password = MAILER_PASSWORD; // your email address password
+
+    $from = MAILER_EMAIL;
+    $to = OUR_EMAIL;
+    $email = $data['personal_email'];
+
+    $body = "<html><body>";
+    foreach ($data as $key => $value) {
+      $body .= "<strong>".ucwords(str_replace('_', ' ', $key))."</strong>: ".$value."<br />";
+    }
+    $body .= "</body></html>";
+
+    $crlf = "\n";
+
+    $text = '';
+    $html = $body;
+
+    $mime = new Mail_mime($crlf);
+    $mime->setTXTBody($text);
+    $mime->setHTMLBody($html);
+
+
+    $headers = array('From' => $from, 'To' => $to, 'Subject' => $subject, 'Reply-To' => $email); // the email headers
+
+    //do not ever try to call these lines in reverse order
+    $body = $mime->get();
+    $headers = $mime->headers($headers);
+
+    $smtp = Mail::factory('smtp', array('host' =>'localhost', 'auth' => true, 'username' => $username, 'password' => $password, 'port' => '25')); // SMTP protocol with the username and password of an existing email account in your hosting account
+    $mail = $smtp->send($to, $headers, $body); // sending the email
 
     $value = $db->insert_query("tenants",$data);
 
@@ -413,6 +409,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
  ?>
 <?php include('includes/header2.inc.php'); ?>
+<script>
+function FillLandlordDetails(form) {
+  var own_last_property = form['own_last_property[]'].value;
+  if (own_last_property === 'Yes') {
+    form.landlord_full_name.value = form.tenant_full_name.value;
+    form.landlord_telephone.value = form.mobile.value;
+    form.landlord_email.value = form.personal_email.value;
+  }
+}
+
+function FillManagerDetails(form) {
+  var self_employed = form['self_employed[]'].value;
+  if (self_employed === 'Yes') {
+    form.employment_manager_name.value = form.tenant_full_name.value;
+    form.employment_manager_position.value = 'Self Employed';
+    form.employment_manager_phone.value = form.mobile.value;
+    form.employment_manager_email.value = form.personal_email.value;
+  }
+}
+</script>
 </div>
 <!--End of Top Container-->
 
@@ -669,6 +685,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
               <h3 class="mt-60 text-red">Emergency Contact</h3>
+              <small class="text-small">This can <strong>not</strong> be someone who is also resident in the property
+                with you.</small>
 
               <div class="form-group">
                 <div class="col-sm-12">
@@ -719,56 +737,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
               <!-- Landlord Information -->
               <h3 class="mt-60 text-red">Current/Previous Landlord</h3>
 
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <label for="landlord_full_name" class="control-label">Landlord Full Name </label>
-                  <?php Text('landlord_full_name','','class="form-control" placeholder="Enter landlord full name"') ?>
-                  <?php show_errors('landlord_full_name') ?>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <label for="landlord_address" class="control-label">Landlord Address </label>
-                  <?php Textarea('landlord_address','','class="form-control" placeholder="Enter landlord address"') ?>
-                  <?php show_errors('landlord_address') ?>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <label for="landlord_postcode" class="control-label">Landlord Postcode </label>
-                  <?php Text('landlord_postcode','','class="form-control" placeholder="Enter landlord postcode"') ?>
-                  <?php show_errors('landlord_postcode') ?>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-6">
-                  <label for="landlord_telephone" class="control-label">Landlord Telephone </label>
-                  <?php Text('landlord_telephone','','class="form-control" placeholder="Enter your landlord phone number"') ?>
-                  <?php show_errors('landlord_telephone') ?>
-                </div>
-                <div class="col-sm-6">
-                  <label for="landlord_email" class="control-label">Landlord Email </label>
-                  <?php Email('landlord_email','','class="form-control" placeholder="Enter your landlord email address"') ?>
-                  <?php show_errors('landlord_email') ?>
-                </div>
-              </div>
-
-              <div class="checkbox">
+              <div class="checkbox mb-15">
                 <label>
-                  <?php CheckBox('never_rented_before','Yes') ?> Please tick this box if you have never rented before
-                  <br />
-                  <small class="text-small">(Please provide us with proof of address in this case, e.g. utility bill,
-                    bank statement, etc.) </small>
-                  <?php show_errors('never_rented_before') ?>
-                </label>
-              </div>
-
-              <div class="checkbox">
-                <label>
-                  <?php CheckBox('own_last_property','Yes') ?> Please tick this box if you owned the last property that
+                  <?php CheckBox('own_last_property','Yes', false, 'onclick="FillLandlordDetails(this.form)"') ?> Please
+                  tick
+                  this box if you owned the last property that
                   you lived at<br />
                   <small class="text-small">(Please provide us with a copy of your last mortgage statement or any other
                     document confirming ownership)</small>
@@ -776,12 +749,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 </label>
               </div>
 
-              <!-- Employment Details -->
-              <h3 class="mt-60 text-red">Employment Details</h3>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <label for="landlord_full_name" class="control-label">Landlord Full Name *</label>
+                  <?php Text('landlord_full_name','','class="form-control" placeholder="Enter landlord full name"') ?>
+                  <?php show_errors('landlord_full_name') ?>
+                </div>
+              </div>
 
               <div class="form-group">
                 <div class="col-sm-12">
-                  <label for="employment_company_name" class="control-label">Company Name </label>
+                  <label for="landlord_address" class="control-label">Landlord Address *</label>
+                  <?php Textarea('landlord_address','','class="form-control" placeholder="Enter landlord address"') ?>
+                  <?php show_errors('landlord_address') ?>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <label for="landlord_postcode" class="control-label">Landlord Postcode *</label>
+                  <?php Text('landlord_postcode','','class="form-control" placeholder="Enter landlord postcode"') ?>
+                  <?php show_errors('landlord_postcode') ?>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <label for="landlord_telephone" class="control-label">Landlord Telephone *</label>
+                  <?php Text('landlord_telephone','','class="form-control" placeholder="Enter your landlord phone number"') ?>
+                  <?php show_errors('landlord_telephone') ?>
+                </div>
+                <div class="col-sm-6">
+                  <label for="landlord_email" class="control-label">Landlord Email *</label>
+                  <?php Email('landlord_email','','class="form-control" placeholder="Enter your landlord email address"') ?>
+                  <?php show_errors('landlord_email') ?>
+                </div>
+              </div>
+
+              <div class="checkbox">
+                <label>
+                  <?php CheckBox('never_rented_before','Yes') ?> Please tick this box if you have never rented before.
+                  Ensure you fill in the details on your last guardian
+                  <br />
+                  <small class="text-small">(Please provide us with proof of address in this case, e.g. utility bill,
+                    bank statement, etc.) </small>
+                  <?php show_errors('never_rented_before') ?>
+                </label>
+              </div>
+
+
+
+              <!-- Employment Details -->
+              <h3 class="mt-60 text-red">Employment Details</h3>
+
+              <div class="checkbox mb-15">
+                <label>
+                  <?php CheckBox('self_employed','Yes', false,'onclick="FillManagerDetails(this.form)"') ?> Please
+                  tick this box if you’re self-employed <br />
+                  <small class="text-small">(Please provide us with your last 3 years’ tax returns or a letter from your
+                    accountant, confirming your last 3 years of income)</small>
+                  <?php show_errors('self_employed') ?>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <label for="employment_company_name" class="control-label">Company Name * </label>
                   <?php Text('employment_company_name','','class="form-control" placeholder="Enter the company name"') ?>
                   <?php show_errors('employment_company_name') ?>
                 </div>
@@ -789,12 +822,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
               <div class="form-group">
                 <div class="col-sm-6">
-                  <label for="employment_position_title" class="control-label">Position Title </label>
+                  <label for="employment_position_title" class="control-label">Position Title * </label>
                   <?php Text('employment_position_title','','class="form-control" placeholder="Enter your position title"') ?>
                   <?php show_errors('employment_position_title') ?>
                 </div>
                 <div class="col-sm-6">
-                  <label for="employment_contract_type" class="control-label">Contract Type </label>
+                  <label for="employment_contract_type" class="control-label">Contract Type * </label>
                   <?php Select('employment_contract_type',
                               [
                                 '' => "Select Contract Type",
@@ -813,49 +846,80 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
               <div class="form-group">
                 <div class="col-sm-12">
-                  <label for="employment_company_address" class="control-label">Company Address </label>
+                  <label for="employment_company_address" class="control-label">Company Address * </label>
                   <?php Textarea('employment_company_address','','class="form-control" placeholder="Enter your employment company address"') ?>
                   <?php show_errors('employment_company_address') ?>
                 </div>
               </div>
 
               <div class="form-group">
-                <div class="col-sm-6">
-                  <label for="employment_postcode" class="control-label">Postcode</label>
+                <div class="col-sm-12">
+                  <label for="employment_postcode" class="control-label">Postcode *</label>
                   <?php Text('employment_postcode','','class="form-control" placeholder="Enter your postcode"') ?>
                   <?php show_errors('employment_postcode') ?>
                 </div>
+              </div>
+
+              <div class="form-group">
+
                 <div class="col-sm-6">
-                  <label for="employment_manager_name" class="control-label">Contract/Manager's Name</label>
+                  <label for="month_of_start_date" class="control-label">Start Date *</label>
+                  <?php
+                    Select('month_of_start_date',[
+                      "" => 'Select Month *',
+                      "January" => 'January',
+                      "February" => 'February',
+                      "March" => 'March',
+                      "April" => 'April',
+                      "May" => 'May',
+                      "June" => 'June',
+                      "July" => 'July',
+                      "August" => 'August',
+                      "September" => 'September',
+                      "October" => 'October',
+                      "November" => 'November',
+                      "December" => 'December',
+                    ],'','class="form-control"')
+                  ?>
+                  <?php show_errors('month_of_start_date') ?>
+                </div>
+                <div class="col-sm-6">
+                  <label for="year_of_start_date" class="control-label">&nbsp;</label>
+                  <?php
+                    $year = array('' => 'Select Year *');
+                    for ($i = 1990; $i <= 2020; $i++) {
+                        $year[$i] = $i;
+                    }
+                    Select('year_of_start_date',$year, '','class="form-control"');
+                    show_errors('year_of_start_date');
+                  ?>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <label for="employment_manager_name" class="control-label">Contract/Manager's Name *</label>
                   <?php Text('employment_manager_name','','class="form-control" placeholder="Enter your manager name"') ?>
                   <?php show_errors('employment_manager_name') ?>
                 </div>
-              </div>
-
-              <div class="form-group">
                 <div class="col-sm-6">
-                  <label for="employment_manager_position" class="control-label">Manager Position</label>
+                  <label for="employment_manager_position" class="control-label">Manager Position *</label>
                   <?php Text('employment_manager_position','','class="form-control" placeholder="Enter your position"') ?>
                   <?php show_errors('employment_manager_position') ?>
                 </div>
-                <div class="col-sm-6">
-                  <label for="employment_manager_email" class="control-label">Manager Email</label>
-                  <?php Email('employment_manager_email','','class="form-control" placeholder="Enter your managers email"') ?>
-                  <?php show_errors('employment_manager_email') ?>
-                </div>
               </div>
 
               <div class="form-group">
                 <div class="col-sm-6">
-                  <label for="employment_manager_phone" class="control-label">Manager Telephone</label>
+                  <label for="employment_manager_email" class="control-label">Manager Email *</label>
+                  <?php Email('employment_manager_email','','class="form-control" placeholder="Enter your managers email"') ?>
+                  <?php show_errors('employment_manager_email') ?>
+                </div>
+                <div class="col-sm-6">
+                  <label for="employment_manager_phone" class="control-label">Manager Telephone *</label>
                   <?php Text('employment_manager_phone','','class="form-control" placeholder="Enter your manager phone number"') ?>
                   <?php show_errors('employment_manager_phone') ?>
                 </div>
-                <!-- <div class="col-sm-6">
-                              <label for="emergency_contact_telephone_2" class="control-label">Telephone 2</label>
-                              <?php Text('emergency_contact_telephone_2','','class="form-control" placeholder="Enter your emergency contact phone number 2"') ?>
-                              <?php show_errors('emergency_contact_telephone_2') ?>
-                            </div> -->
               </div>
 
               <div class="form-group">
@@ -878,14 +942,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 </label>
               </div>
 
-              <div class="checkbox">
-                <label>
-                  <?php CheckBox('self_employed','Yes') ?> Please tick this box if you’re self-employed <br />
-                  <small class="text-small">(Please provide us with your last 3 years’ tax returns or a letter from your
-                    accountant, confirming your last 3 years of income)</small>
-                  <?php show_errors('self_employed') ?>
-                </label>
-              </div>
 
               <!-- Dependents Details -->
               <h3 class="mt-60 text-red">Dependents</h3>
@@ -1001,33 +1057,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
               <!-- Pets -->
               <h3 class="mt-60 text-red">Pets</h3>
-              <small class="text-small">Please note that the landlord has to give written permission for you to keep a
-                pet at the propertyand you must abide by the House Rules on keeping pet/s</small>
-
-              <div class="form-group">
-                <div class="col-sm-3">
-                  <div class="checkbox">
-                    <label>
-                      <?php CheckBox('cats','Yes') ?> Cats
-                      <?php show_errors('cats') ?>
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="checkbox">
-                    <label>
-                      <?php CheckBox('dogs','Yes') ?> Dogs
-                      <?php show_errors('dogs') ?>
-                    </label>
-                  </div>
-                </div>
-              </div>
+              <small class="text-small mb-15">Please note that the landlord has to give written permission for you to
+                keep a
+                pet at the property and you must abide by the House Rules on keeping pet/s. Examples are cats, dogs,
+                e.t.c </small>
 
               <div class="form-group">
                 <div class="col-sm-12">
-                  <label for="other_pets" class="control-label">Others</label>
-                  <?php Text('other_pets','','class="form-control" placeholder="Enter other pets"') ?>
-                  <?php show_errors('other_pets') ?>
+                  <?php Text('pets','','class="form-control" placeholder="List your pets"') ?>
+                  <?php show_errors('pets') ?>
                 </div>
               </div>
 
@@ -1039,8 +1077,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <label>
                   <?php CheckBox('confirmation','Yes') ?> By submitting this form, I confirm that the information
                   provided on this Tenant Application Form is (to the best of my knowledge) accurate, complete and not
-                  misleading and that I have read and agreed to the attached <a
-                    href="data-protection-statement.php">Data Protection Statement</a>.
+                  misleading and that I have read and agreed to the attached <a href="data-protection-statement.php"
+                    target="_blank">Data Protection Statement</a>.
                   <?php show_errors('confirmation') ?>
                 </label>
               </div>

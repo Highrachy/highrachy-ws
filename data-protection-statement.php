@@ -12,7 +12,7 @@ $db = new Database(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 <!--End of Top Container-->
 
 <section>
-  <div class="container">
+  <div class="container data-protection-statement">
     <div id="content" class="row">
       <?php include('includes/breadcrumb2.inc.php'); ?>
       <div class="maincontent content-padding">
@@ -21,7 +21,7 @@ $db = new Database(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
           <div class="col-sm-12">
             <h2>Data Protection Statement</h2>
 
-            <div class="lead font-weight-bold">
+            <div>
               Highrachy is committed to protecting the rights and freedoms of our tenants and Clients, and safely and
               securely processing your data in accordance with all of our legal obligations. We process both personal
               and sensitive data about our applicants, and other individuals for a variety of business purposes.
