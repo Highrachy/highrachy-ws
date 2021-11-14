@@ -130,11 +130,12 @@ function validate($name,$command,$method="POST"){
 	}
 
 	$form_variables = form_method($method);
+	$isFileCommand = $command == 'image' || $command == 'file';
 	//Get the submitted form
-	if(isset($form_variables[$name]) || $command == 'image'){
+	if(isset($form_variables[$name]) || $isFileCommand){
 
 		#Check if to use $_POST OR $_GET
-		if ($command == 'image'){
+		if ($isFileCommand){
 			$input_value = $name;
 		}
 	  else{
@@ -208,7 +209,7 @@ function validate($name,$command,$method="POST"){
 							break;
 						}
 
-			case 'upload':
+			case 'file':
 						{
 							$result = is_valid_file($input_value);
 							break;
@@ -229,7 +230,7 @@ function assign($name,$command="",$error="",$method="POST"){
 		#get the form method
 		$form_variables = form_method($method);
 
-		if ($command == 'image'){
+		if ($command == 'image' || $command == 'file'){
 			return $name;
 		}
 	  else{

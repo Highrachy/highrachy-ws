@@ -16,7 +16,7 @@ require('functions/upload.inc.php');
 $db = new Database(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 $list_of_properties = [
-  'quiver-court-1-bedroom-flat' => [
+  'quiver-court-bedroom-flat' => [
     'name' => 'Quiver court',
     'description' => '1 bedroom flat - 1 bath, 2 toilets',
     'address' => '12 Toyin Adefala street, Oke Ire Nla, Ajah.',
@@ -63,13 +63,13 @@ if (isset($key) && (array_key_exists($key, $list_of_properties))){
   $property = $list_of_properties[$key];
 }
 
-//Add a new Testimonial
+//Add a new Tenant
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   $data = $errors = array();
 
   # -- Tenant Picture
   // check if valid image
-  $pics= assign('tenant_picture','image','Please upload a valid image');
+  $pics= assign('tenant_picture','image','Please upload a valid tenant image');
   if (isset($pics)) {
     $data['tenant_picture'] = upload_file('tenant_picture', 'tenant-'.time(), 'img/tenants/');
 
@@ -77,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       $errors['tenant_picture'] = "Unable to upload image. Please try again";
     }
   }
+
 
 
   # -- Tenant Full Name
@@ -264,80 +265,223 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
   }
 
-  # -- Dependent Name 1
+
+  # -- Dependant Name 1
   if (exists('dependent_name_1')) {
-    $data['dependent_name_1'] = assign('dependent_name_1','req','Please enter a valid dependent name 1');
+    $data['dependent_name_1'] = assign('dependent_name_1','req','Please enter a valid dependant name 1');
   }
 
-  # -- Dependent Occupation 1
+  # -- Dependant Occupation 1
   if (exists('dependent_occupation_1')) {
-    $data['dependent_occupation_1'] = assign('dependent_occupation_1','req','Please enter a valid dependent occupation 1');
+    $data['dependent_occupation_1'] = assign('dependent_occupation_1','req','Please enter a valid dependant occupation 1');
   }
 
-  # -- Dependent Relationship 1
+  if (exists('dependent_name_1') && !exists('dependent_occupation_1')) {
+    $errors['dependent_occupation_1'] = 'Please enter an occupation for dependant 1';
+  }
+
+  # -- Dependant Relationship 1
   if (exists('dependent_relationship_1')) {
-    $data['dependent_relationship_1'] = assign('dependent_relationship_1','req','Please enter a valid dependent relationship 1');
+    $data['dependent_relationship_1'] = assign('dependent_relationship_1','req','Please select a valid dependant relationship 1');
   }
 
-  # -- Dependent Name 2
+  if (exists('dependent_name_1') && !exists('dependent_relationship_1')) {
+    $errors['dependent_relationship_1'] = 'Please select a relationship for dependant 1';
+  }
+
+  # -- Dependant Age 1
+  if (exists('dependent_age_1')) {
+    $data['dependent_age_1'] = assign('dependent_age_1','req','Please enter a valid dependant age 1');
+  }
+
+  if (exists('dependent_name_1') && !exists('dependent_age_1')) {
+    $errors['dependent_age_1'] = 'Please enter a valid age for dependant 1';
+  }
+
+  # -- Dependant ID
+  $valid_dependent_data_1 = isset($data['dependent_name_1']) && isset($data['dependent_relationship_1']) && isset($data['dependent_age_1']);
+  if (!isset($file_1) && $valid_dependent_data_1 && ($data['dependent_relationship_1'] == "Co-residents" || (int)$data['dependent_age_1'] >= 18)) {
+    $file_1= assign('dependent_id_1','file','Please upload a valid file for dependant 1');
+    $data['dependent_id_1'] = upload_file('dependent_id_1', strtolower(str_replace(' ', '-', $data['dependent_name_1']))."-".time(), 'img/tenants/');
+
+    if (!isset($data['dependent_id_1'])) {
+      $errors['dependent_id_1'] = "Unable to upload ID for dependendent 1. Please try again";
+    }
+  }
+
+
+  # -- Dependant Name 2
   if (exists('dependent_name_2')) {
-    $data['dependent_name_2'] = assign('dependent_name_2','req','Please enter a valid dependent name 2');
+    $data['dependent_name_2'] = assign('dependent_name_2','req','Please enter a valid dependant name 2');
   }
 
-  # -- Dependent Occupation 2
+  # -- Dependant Occupation 2
   if (exists('dependent_occupation_2')) {
-    $data['dependent_occupation_2'] = assign('dependent_occupation_2','req','Please enter a valid dependent occupation 2');
+    $data['dependent_occupation_2'] = assign('dependent_occupation_2','req','Please enter a valid dependant occupation 2');
   }
 
-  # -- Dependent Relationship 2
+  if (exists('dependent_name_2') && !exists('dependent_occupation_2')) {
+    $errors['dependent_occupation_2'] = 'Please enter an occupation for dependant 2';
+  }
+
+  # -- Dependant Relationship 2
   if (exists('dependent_relationship_2')) {
-    $data['dependent_relationship_2'] = assign('dependent_relationship_2','req','Please enter a valid dependent relationship 2');
+    $data['dependent_relationship_2'] = assign('dependent_relationship_2','req','Please select a valid dependant relationship 2');
   }
 
-  # -- Dependent Name 3
+  if (exists('dependent_name_2') && !exists('dependent_relationship_2')) {
+    $errors['dependent_relationship_2'] = 'Please select a relationship for dependant 2';
+  }
+
+  # -- Dependant Age 2
+  if (exists('dependent_age_2')) {
+    $data['dependent_age_2'] = assign('dependent_age_2','req','Please enter a valid dependant age 2');
+  }
+
+  if (exists('dependent_name_2') && !exists('dependent_age_2')) {
+    $errors['dependent_age_2'] = 'Please enter a valid age for dependant 2';
+  }
+
+  # -- Dependant ID
+  $valid_dependent_data_2 = isset($data['dependent_name_2']) && isset($data['dependent_relationship_2']) && isset($data['dependent_age_2']);
+  if (!isset($file_2) && $valid_dependent_data_2 && ($data['dependent_relationship_2'] == "Co-residents" || (int)$data['dependent_age_2'] >= 18)) {
+    $file_2= assign('dependent_id_2','file','Please upload a valid file for dependant 2');
+    $data['dependent_id_2'] = upload_file('dependent_id_2', strtolower(str_replace(' ', '-', $data['dependent_name_2']))."-".time(), 'img/tenants/');
+
+    if (!isset($data['dependent_id_2'])) {
+      $errors['dependent_id_2'] = "Unable to upload ID for dependendent 2. Please try again";
+    }
+  }
+
+  # -- Dependant Name 3
   if (exists('dependent_name_3')) {
-    $data['dependent_name_3'] = assign('dependent_name_3','req','Please enter a valid dependent name 3');
+    $data['dependent_name_3'] = assign('dependent_name_3','req','Please enter a valid dependant name 3');
   }
 
-  # -- Dependent Occupation 3
+  # -- Dependant Occupation 3
   if (exists('dependent_occupation_3')) {
-    $data['dependent_occupation_3'] = assign('dependent_occupation_3','req','Please enter a valid dependent occupation 3');
+    $data['dependent_occupation_3'] = assign('dependent_occupation_3','req','Please enter a valid dependant occupation 3');
   }
 
-  # -- Dependent Relationship 3
+  if (exists('dependent_name_3') && !exists('dependent_occupation_3')) {
+    $errors['dependent_occupation_3'] = 'Please enter an occupation for dependant 3';
+  }
+
+  # -- Dependant Relationship 3
   if (exists('dependent_relationship_3')) {
-    $data['dependent_relationship_3'] = assign('dependent_relationship_3','req','Please enter a valid dependent relationship 3');
+    $data['dependent_relationship_3'] = assign('dependent_relationship_3','req','Please select a valid dependant relationship 3');
   }
 
-  # -- Dependent Name 4
+  if (exists('dependent_name_3') && !exists('dependent_relationship_3')) {
+    $errors['dependent_relationship_3'] = 'Please select a relationship for dependant 3';
+  }
+
+  # -- Dependant Age 3
+  if (exists('dependent_age_3')) {
+    $data['dependent_age_3'] = assign('dependent_age_3','req','Please enter a valid dependant age 3');
+  }
+
+  if (exists('dependent_name_3') && !exists('dependent_age_3')) {
+    $errors['dependent_age_3'] = 'Please enter a valid age for dependant 3';
+  }
+
+  # -- Dependant ID
+  $valid_dependent_data_3 = isset($data['dependent_name_3']) && isset($data['dependent_relationship_3']) && isset($data['dependent_age_3']);
+  if (!isset($file_3) && $valid_dependent_data_3 && ($data['dependent_relationship_3'] == "Co-residents" || (int)$data['dependent_age_3'] >= 18)) {
+    $file_3= assign('dependent_id_3','file','Please upload a valid file for dependant 3');
+    $data['dependent_id_3'] = upload_file('dependent_id_3', strtolower(str_replace(' ', '-', $data['dependent_name_3']))."-".time(), 'img/tenants/');
+
+    if (!isset($data['dependent_id_3'])) {
+      $errors['dependent_id_3'] = "Unable to upload ID for dependendent 3. Please try again";
+    }
+  }
+
+  # -- Dependant Name 4
   if (exists('dependent_name_4')) {
-    $data['dependent_name_4'] = assign('dependent_name_4','req','Please enter a valid dependent name 4');
+    $data['dependent_name_4'] = assign('dependent_name_4','req','Please enter a valid dependant name 4');
   }
 
-  # -- Dependent Occupation 4
+  # -- Dependant Occupation 4
   if (exists('dependent_occupation_4')) {
-    $data['dependent_occupation_4'] = assign('dependent_occupation_4','req','Please enter a valid dependent occupation 4');
+    $data['dependent_occupation_4'] = assign('dependent_occupation_4','req','Please enter a valid dependant occupation 4');
   }
 
-  # -- Dependent Relationship 4
+  if (exists('dependent_name_4') && !exists('dependent_occupation_4')) {
+    $errors['dependent_occupation_4'] = 'Please enter an occupation for dependant 4';
+  }
+
+  # -- Dependant Relationship 4
   if (exists('dependent_relationship_4')) {
-    $data['dependent_relationship_4'] = assign('dependent_relationship_4','req','Please enter a valid dependent relationship 4');
+    $data['dependent_relationship_4'] = assign('dependent_relationship_4','req','Please select a valid dependant relationship 4');
   }
 
-  # -- Dependent Name 5
+  if (exists('dependent_name_4') && !exists('dependent_relationship_4')) {
+    $errors['dependent_relationship_4'] = 'Please select a relationship for dependant 4';
+  }
+
+  # -- Dependant Age 4
+  if (exists('dependent_age_4')) {
+    $data['dependent_age_4'] = assign('dependent_age_4','req','Please enter a valid dependant age 4');
+  }
+
+  if (exists('dependent_name_4') && !exists('dependent_age_4')) {
+    $errors['dependent_age_4'] = 'Please enter a valid age for dependant 4';
+  }
+
+  # -- Dependant ID
+  $valid_dependent_data_4 = isset($data['dependent_name_4']) && isset($data['dependent_relationship_4']) && isset($data['dependent_age_4']);
+  if (!isset($file_4) && $valid_dependent_data_4 && ($data['dependent_relationship_4'] == "Co-residents" || (int)$data['dependent_age_4'] >= 18)) {
+    $file_4= assign('dependent_id_4','file','Please upload a valid file for dependant 4');
+    $data['dependent_id_4'] = upload_file('dependent_id_4', strtolower(str_replace(' ', '-', $data['dependent_name_4']))."-".time(), 'img/tenants/');
+
+    if (!isset($data['dependent_id_4'])) {
+      $errors['dependent_id_4'] = "Unable to upload ID for dependendent 4. Please try again";
+    }
+  }
+
+  # -- Dependant Name 5
   if (exists('dependent_name_5')) {
-    $data['dependent_name_5'] = assign('dependent_name_5','req','Please enter a valid dependent name 5');
+    $data['dependent_name_5'] = assign('dependent_name_5','req','Please enter a valid dependant name 5');
   }
 
-  # -- Dependent Occupation 5
+  # -- Dependant Occupation 5
   if (exists('dependent_occupation_5')) {
-    $data['dependent_occupation_5'] = assign('dependent_occupation_5','req','Please enter a valid dependent occupation 5');
+    $data['dependent_occupation_5'] = assign('dependent_occupation_5','req','Please enter a valid dependant occupation 5');
   }
 
-  # -- Dependent Relationship 5
-  if (exists('dependent_relationship_5')) {
-    $data['dependent_relationship_5'] = assign('dependent_relationship_5','req','Please enter a valid dependent relationship 5');
+  if (exists('dependent_name_5') && !exists('dependent_occupation_5')) {
+    $errors['dependent_occupation_5'] = 'Please enter an occupation for dependant 5';
   }
+
+  # -- Dependant Relationship 5
+  if (exists('dependent_relationship_5')) {
+    $data['dependent_relationship_5'] = assign('dependent_relationship_5','req','Please select a valid dependant relationship 5');
+  }
+
+  if (exists('dependent_name_5') && !exists('dependent_relationship_5')) {
+    $errors['dependent_relationship_5'] = 'Please select a relationship for dependant 5';
+  }
+
+  # -- Dependant Age 5
+  if (exists('dependent_age_5')) {
+    $data['dependent_age_5'] = assign('dependent_age_5','req','Please enter a valid dependant age 5');
+  }
+
+  if (exists('dependent_name_5') && !exists('dependent_age_5')) {
+    $errors['dependent_age_5'] = 'Please enter a valid age for dependant 5';
+  }
+
+  # -- Dependant ID
+  $valid_dependent_data_5 = isset($data['dependent_name_5']) && isset($data['dependent_relationship_5']) && isset($data['dependent_age_5']);
+  if (!isset($file_5) && $valid_dependent_data_5 && ($data['dependent_relationship_5'] == "Co-residents" || (int)$data['dependent_age_5'] >= 18)) {
+    $file_5= assign('dependent_id_5','file','Please upload a valid file for dependant 5');
+    $data['dependent_id_5'] = upload_file('dependent_id_5', strtolower(str_replace(' ', '-', $data['dependent_name_5']))."-".time(), 'img/tenants/');
+
+    if (!isset($data['dependent_id_5'])) {
+      $errors['dependent_id_5'] = "Unable to upload ID for dependendent 5. Please try again";
+    }
+  }
+
 
   # -- Have Persons with Special Needs
   if (exists('have_persons_with_special_needs')) {
@@ -364,7 +508,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data['confirmation'] = $confirmation[0];
   }
 
-
 	if (empty($errors)) { // If everything's OK...
     // Add property information
     $data['property_name'] = $property['name'];
@@ -386,8 +529,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $body = "<html><body>";
     foreach ($data as $key => $value) {
-      if ($key == 'tenant_picture') {
-        $body .= "<img src='".BASE_URL."img/tenants/$value' alt='Tenant Picture' style='width:128px;'> <br />";
+      $contains_link = $key == 'tenant_picture' || strpos($key, 'dependent_id_') !== false;
+      if ($contains_link) {
+        if ($key == 'tenant_picture') {
+          $body .= "<img src='".BASE_URL."img/tenants/$value' alt='Tenant Picture' style='width:128px;'> <br />";
+        } else {
+          $body .= "<strong>".ucwords(str_replace('_', ' ', $key))."</strong>: ".BASE_URL."img/tenants/$value"."<br />";
+        }
       } else {
         $body .= "<strong>".ucwords(str_replace('_', ' ', $key))."</strong>: ".$value."<br />";
       }
@@ -429,12 +577,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
   }
 }
-
-
  ?>
+
+<?php
+$relationship_type = [
+  '' => "Select Relationship Type",
+  "Dependants" => "Dependants",
+  "Co-residents" => "Co-residents",
+]
+  ?>
+
 <?php include('includes/header2.inc.php'); ?>
 <script>
-function FillLandlordDetails(form) {
+function updateLandlordDetails(form) {
   var own_last_property = form['own_last_property[]'].value;
   if (own_last_property === 'Yes') {
     form.landlord_full_name.value = form.tenant_full_name.value;
@@ -443,7 +598,7 @@ function FillLandlordDetails(form) {
   }
 }
 
-function FillManagerDetails(form) {
+function updateManagerDetails(form) {
   var self_employed = form['self_employed[]'].value;
   if (self_employed === 'Yes') {
     form.employment_manager_name.value = form.tenant_full_name.value;
@@ -455,7 +610,7 @@ function FillManagerDetails(form) {
 
 function previewFile() {
   var preview = document.querySelector('img.tenant_img');
-  var file = document.querySelector('input[type=file]').files[0];
+  var file = document.querySelector('input[id=profile_image]').files[0];
   var reader = new FileReader();
 
   reader.onloadend = function() {
@@ -521,6 +676,15 @@ function previewFile() {
               <label class="control-label">Description:</label>
               <p class="lead font-weight-bold"><?php echo $property['description'] ?></p>
 
+              <hr class="mt-30 mb-30" />
+
+              <p class="lead mb-30">
+                Please do not fill the information on behalf of another person. Applicants may not fraudulently present
+                their information on behalf of another.
+                Highrachy reserves the right to revoke a person's tenancy where the person resident on the property is
+                not the original applicant.
+              </p>
+
               <div class="form-group">
                 <div class="col-sm-12">
                   <label for="tenant_full_name" class="control-label">Tenant's Full Name *</label>
@@ -540,9 +704,9 @@ function previewFile() {
                 <img class="tenant_img avatar-img" src="img/tenants/tenant-avatar.png"><br />
 
                 <div class="input-group-btn">
-                  <label for="image" class="btn btn-default">Upload Picture</label>
+                  <label for="profile_image" class="btn btn-default">Upload Picture</label>
                   <?php show_errors('tenant_picture') ?>
-                  <input id="image" type="file" name="tenant_picture" onChange="previewFile()" accept="image/*"
+                  <input id="profile_image" type="file" name="tenant_picture" onChange="previewFile()" accept="image/*"
                     style="visibility:hidden;" />
                 </div>
               </div>
@@ -616,7 +780,7 @@ function previewFile() {
                   <?php Select('id_type',
                               [
                                 '' => "Select Identification Type",
-                                "Driver's Lincense" => "Driver's Lincense",
+                                "Driver's License" => "Driver's License",
                                 "International Passport" => "International Passport",
                               ],'','class="form-control"') ?>
                   <?php show_errors('id_type') ?>
@@ -789,7 +953,8 @@ function previewFile() {
 
               <div class="checkbox mb-15">
                 <label>
-                  <?php CheckBox('own_last_property','Yes', false, 'onclick="FillLandlordDetails(this.form)"') ?> Please
+                  <?php CheckBox('own_last_property','Yes', false, 'onclick="updateLandlordDetails(this.form)"') ?>
+                  Please
                   tick
                   this box if you owned the last property that
                   you lived at<br />
@@ -854,7 +1019,7 @@ function previewFile() {
 
               <div class="checkbox mb-15">
                 <label>
-                  <?php CheckBox('self_employed','Yes', false,'onclick="FillManagerDetails(this.form)"') ?> Please
+                  <?php CheckBox('self_employed','Yes', false,'onclick="updateManagerDetails(this.form)"') ?> Please
                   tick this box if you’re self-employed <br />
                   <small class="text-small">(Please provide us with your last 3 years’ tax returns or a letter from your
                     accountant, confirming your last 3 years of income)</small>
@@ -993,98 +1158,203 @@ function previewFile() {
               </div>
 
 
-              <!-- Dependents Details -->
-              <h3 class="mt-60 text-red">Dependents</h3>
+              <!-- Dependants Details -->
+              <h3 class="mt-60 text-red">Dependants/Co-residents</h3>
 
+              <!-- Start Dependant 1 -->
               <div class="form-group">
-                <div class="col-sm-4">
-                  <label for="dependent_name_1" class="control-label">Name 1</label>
-                  <?php Text('dependent_name_1','','class="form-control" placeholder="Dependent Name 1"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_name_1" class="control-label">Dependant Name 1</label>
+                  <?php Text('dependent_name_1','','class="form-control" placeholder="Dependant Name 1"') ?>
                   <?php show_errors('dependent_name_1') ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_occupation_1" class="control-label">Occupation 1</label>
-                  <?php Text('dependent_occupation_1','','class="form-control" placeholder="Dependent occupation 1"') ?>
-                  <?php show_errors('dependent_occupation_1') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_age_1" class="control-label">Age (In Years)</label>
+                  <?php
+                    $year = array('' => 'Select Dependant Age 1');
+                    for ($i = 0; $i <= 100; $i++) {
+                        $year[$i] = $i;
+                    }
+                    Select('dependent_age_1',$year, '','class="form-control"');
+                    show_errors('dependent_age_1');
+                  ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_relationship_1" class="control-label">Relationship 1</label>
-                  <?php Text('dependent_relationship_1','','class="form-control" placeholder="Dependent relationship 1"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_relationship_1" class="control-label">Relationship </label>
+                  <?php Select('dependent_relationship_1', $relationship_type,'','class="form-control"') ?>
                   <?php show_errors('dependent_relationship_1') ?>
                 </div>
+                <div class="col-sm-6">
+                  <label for="dependent_occupation_1" class="control-label">Occupation</label>
+                  <?php Text('dependent_occupation_1','','class="form-control" placeholder="Dependant occupation 1"') ?>
+                  <?php show_errors('dependent_occupation_1') ?>
+                </div>
+                <div class="col-sm-12">
+                  <label for="dependent_id_1" class="control-label">Upload a valid Identification Card</label>
+                  <input id="dependent_id_1" type="file" class="form-control" name="dependent_id_1" />
+                  <small class="text-small">Please provide an ID for Co-residents and Dependants over 18 years
+                    old.</small>
+                  <?php show_errors('dependent_id_1') ?>
+                </div>
               </div>
+              <hr class="mt-30 mb-30">
+              <!-- End Dependant 1 -->
 
+              <!-- Start Dependant 2 -->
               <div class="form-group">
-                <div class="col-sm-4">
-                  <label for="dependent_name_2" class="control-label">Name 2</label>
-                  <?php Text('dependent_name_2','','class="form-control" placeholder="Dependent Name 2"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_name_2" class="control-label">Dependant Name 2</label>
+                  <?php Text('dependent_name_2','','class="form-control" placeholder="Dependant Name 2"') ?>
                   <?php show_errors('dependent_name_2') ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_occupation_2" class="control-label">Occupation 2</label>
-                  <?php Text('dependent_occupation_2','','class="form-control" placeholder="Dependent occupation 2"') ?>
-                  <?php show_errors('dependent_occupation_2') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_age_2" class="control-label">Age (In Years)</label>
+                  <?php
+                    $year = array('' => 'Select Dependant Age 2');
+                    for ($i = 0; $i <= 100; $i++) {
+                        $year[$i] = $i;
+                    }
+                    Select('dependent_age_2',$year, '','class="form-control"');
+                    show_errors('dependent_age_2');
+                  ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_relationship_2" class="control-label">Relationship 2</label>
-                  <?php Text('dependent_relationship_2','','class="form-control" placeholder="Dependent relationship 2"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_relationship_2" class="control-label">Relationship </label>
+                  <?php Select('dependent_relationship_2', $relationship_type,'','class="form-control"') ?>
                   <?php show_errors('dependent_relationship_2') ?>
                 </div>
+                <div class="col-sm-6">
+                  <label for="dependent_occupation_2" class="control-label">Occupation</label>
+                  <?php Text('dependent_occupation_2','','class="form-control" placeholder="Dependant occupation 2"') ?>
+                  <?php show_errors('dependent_occupation_2') ?>
+                </div>
+                <div class="col-sm-12">
+                  <label for="dependent_id_2" class="control-label">Upload a valid Identification Card</label>
+                  <input id="dependent_id_2" type="file" class="form-control" name="dependent_id_2" />
+                  <small class="text-small">Please provide an ID for Co-residents and Dependants over 18 years
+                    old.</small>
+                  <?php show_errors('dependent_id_2') ?>
+                </div>
               </div>
+              <hr class="mt-30 mb-30">
+              <!-- End Dependant 2 -->
 
+              <!-- Start Dependant 3 -->
               <div class="form-group">
-                <div class="col-sm-4">
-                  <label for="dependent_name_3" class="control-label">Name 3</label>
-                  <?php Text('dependent_name_3','','class="form-control" placeholder="Dependent Name 3"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_name_3" class="control-label">Dependant Name 3</label>
+                  <?php Text('dependent_name_3','','class="form-control" placeholder="Dependant Name 3"') ?>
                   <?php show_errors('dependent_name_3') ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_occupation_3" class="control-label">Occupation 3</label>
-                  <?php Text('dependent_occupation_3','','class="form-control" placeholder="Dependent occupation 3"') ?>
-                  <?php show_errors('dependent_occupation_3') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_age_3" class="control-label">Age (In Years)</label>
+                  <?php
+                    $year = array('' => 'Select Dependant Age 3');
+                    for ($i = 0; $i <= 100; $i++) {
+                        $year[$i] = $i;
+                    }
+                    Select('dependent_age_3',$year, '','class="form-control"');
+                    show_errors('dependent_age_3');
+                  ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_relationship_3" class="control-label">Relationship 3</label>
-                  <?php Text('dependent_relationship_3','','class="form-control" placeholder="Dependent relationship 3"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_relationship_3" class="control-label">Relationship </label>
+                  <?php Select('dependent_relationship_3', $relationship_type,'','class="form-control"') ?>
                   <?php show_errors('dependent_relationship_3') ?>
                 </div>
+                <div class="col-sm-6">
+                  <label for="dependent_occupation_3" class="control-label">Occupation</label>
+                  <?php Text('dependent_occupation_3','','class="form-control" placeholder="Dependant occupation 3"') ?>
+                  <?php show_errors('dependent_occupation_3') ?>
+                </div>
+                <div class="col-sm-12">
+                  <label for="dependent_id_3" class="control-label">Upload a valid Identification Card</label>
+                  <input id="dependent_id_3" type="file" class="form-control" name="dependent_id_3" />
+                  <small class="text-small">Please provide an ID for Co-residents and Dependants over 18 years
+                    old.</small>
+                  <?php show_errors('dependent_id_3') ?>
+                </div>
               </div>
+              <hr class="mt-30 mb-30">
+              <!-- End Dependant 3 -->
 
+              <!-- Start Dependant 4 -->
               <div class="form-group">
-                <div class="col-sm-4">
-                  <label for="dependent_name_4" class="control-label">Name 4</label>
-                  <?php Text('dependent_name_4','','class="form-control" placeholder="Dependent Name 4"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_name_4" class="control-label">Dependant Name 4</label>
+                  <?php Text('dependent_name_4','','class="form-control" placeholder="Dependant Name 4"') ?>
                   <?php show_errors('dependent_name_4') ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_occupation_4" class="control-label">Occupation 4</label>
-                  <?php Text('dependent_occupation_4','','class="form-control" placeholder="Dependent occupation 4"') ?>
-                  <?php show_errors('dependent_occupation_4') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_age_4" class="control-label">Age (In Years)</label>
+                  <?php
+                    $year = array('' => 'Select Dependant Age 4');
+                    for ($i = 0; $i <= 100; $i++) {
+                        $year[$i] = $i;
+                    }
+                    Select('dependent_age_4',$year, '','class="form-control"');
+                    show_errors('dependent_age_4');
+                  ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_relationship_4" class="control-label">Relationship 4</label>
-                  <?php Text('dependent_relationship_4','','class="form-control" placeholder="Dependent relationship 4"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_relationship_4" class="control-label">Relationship </label>
+                  <?php Select('dependent_relationship_4', $relationship_type,'','class="form-control"') ?>
                   <?php show_errors('dependent_relationship_4') ?>
                 </div>
+                <div class="col-sm-6">
+                  <label for="dependent_occupation_4" class="control-label">Occupation</label>
+                  <?php Text('dependent_occupation_4','','class="form-control" placeholder="Dependant occupation 4"') ?>
+                  <?php show_errors('dependent_occupation_4') ?>
+                </div>
+                <div class="col-sm-12">
+                  <label for="dependent_id_4" class="control-label">Upload a valid Identification Card</label>
+                  <input id="dependent_id_4" type="file" class="form-control" name="dependent_id_4" />
+                  <small class="text-small">Please provide an ID for Co-residents and Dependants over 18 years
+                    old.</small>
+                  <?php show_errors('dependent_id_4') ?>
+                </div>
               </div>
+              <hr class="mt-30 mb-30">
+              <!-- End Dependant 4 -->
 
+              <!-- Start Dependant 5 -->
               <div class="form-group">
-                <div class="col-sm-4">
-                  <label for="dependent_name_5" class="control-label">Name 5</label>
-                  <?php Text('dependent_name_5','','class="form-control" placeholder="Dependent Name 5"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_name_5" class="control-label">Dependant Name 5</label>
+                  <?php Text('dependent_name_5','','class="form-control" placeholder="Dependant Name 5"') ?>
                   <?php show_errors('dependent_name_5') ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_occupation_5" class="control-label">Occupation 5</label>
-                  <?php Text('dependent_occupation_5','','class="form-control" placeholder="Dependent occupation 5"') ?>
-                  <?php show_errors('dependent_occupation_5') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_age_5" class="control-label">Age (In Years)</label>
+                  <?php
+                    $year = array('' => 'Select Dependant Age 5');
+                    for ($i = 0; $i <= 100; $i++) {
+                        $year[$i] = $i;
+                    }
+                    Select('dependent_age_5',$year, '','class="form-control"');
+                    show_errors('dependent_age_5');
+                  ?>
                 </div>
-                <div class="col-sm-4">
-                  <label for="dependent_relationship_5" class="control-label">Relationship 5</label>
-                  <?php Text('dependent_relationship_5','','class="form-control" placeholder="Dependent relationship 5"') ?>
+                <div class="col-sm-6">
+                  <label for="dependent_relationship_5" class="control-label">Relationship </label>
+                  <?php Select('dependent_relationship_5', $relationship_type,'','class="form-control"') ?>
                   <?php show_errors('dependent_relationship_5') ?>
                 </div>
+                <div class="col-sm-6">
+                  <label for="dependent_occupation_5" class="control-label">Occupation</label>
+                  <?php Text('dependent_occupation_5','','class="form-control" placeholder="Dependant occupation 5"') ?>
+                  <?php show_errors('dependent_occupation_5') ?>
+                </div>
+                <div class="col-sm-12">
+                  <label for="dependent_id_5" class="control-label">Upload a valid Identification Card</label>
+                  <input id="dependent_id_5" type="file" class="form-control" name="dependent_id_5" />
+                  <small class="text-small">Please provide an ID for Co-residents and Dependants over 18 years
+                    old.</small>
+                  <?php show_errors('dependent_id_5') ?>
+                </div>
               </div>
+              <hr class="mt-30 mb-30">
+              <!-- End Dependant 5 -->
 
               <div class="checkbox">
                 <label>
@@ -1119,16 +1389,14 @@ function previewFile() {
                 </div>
               </div>
 
-
-
-              <!-- Dependents Details -->
+              <!-- Confirmation -->
               <h3 class="mt-60 text-red">Confirmation</h3>
               <div class="checkbox">
                 <label>
                   <?php CheckBox('confirmation','Yes') ?> By submitting this form, I confirm that the information
                   provided on this Tenant Application Form is (to the best of my knowledge) accurate, complete and not
                   misleading and that I have read and agreed to the attached <a href="data-protection-statement.php"
-                    target="_blank">Data Protection Statement</a>.
+                    target="_blank" class="text-primary">Data Protection Statement</a>.
                   <?php show_errors('confirmation') ?>
                 </label>
               </div>

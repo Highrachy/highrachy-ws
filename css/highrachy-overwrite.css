@@ -107,6 +107,10 @@ ol li {
   font-weight: 700 !important;
 }
 
+.text-primary {
+  color: #337ab7 !important;
+}
+
 .text-black {
   color: #444;
 }
@@ -128,7 +132,7 @@ ol li {
 .avatar-img {
   width: 15rem;
   height: 15rem;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 5px;
   display: inline-block;
   margin-bottom: 15px;
